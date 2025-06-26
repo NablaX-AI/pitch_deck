@@ -1,0 +1,12 @@
+{
+  "name": "nabla-x-pitch-deck",
+  "version": "1.0.0",
+  "description": "NablaX AI Pitch Deck",
+  "scripts": {
+    "dev": "python3 -m http.server 3001",
+    "start": "python3 -m http.server 3001"
+  },
+  "keywords": ["pitch-deck", "html", "ai"],
+  "author": "",
+  "license": "ISC"
+} 
