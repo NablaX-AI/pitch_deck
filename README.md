@@ -26,6 +26,10 @@ python3 -m http.server 3001
 ```bash
 npx http-server -p 3001
 ```
+or 
+```bash
+npx live-server --port=3001
+```
 
 Open your browser and visit: **http://localhost:3001**
 

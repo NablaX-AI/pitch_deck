@@ -144,6 +144,23 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
+        .slide-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            color: #374151;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            z-index: 20;
+        }
+        .slide-number.white {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -151,16 +168,18 @@
     <main id="pitch-deck">
         <!-- Slide 1: Welcome -->
         <section id="slide-1" class="slide active bg-blue-900 text-white">
+            <div class="slide-number white">1</div>
             <div class="text-center">
                 <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-main">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">NablaX AI</h1>
                 <p class="text-xl md:text-2xl text-blue-200 mb-4">AI-Powered Business-as-a-Service</p>
-                <p class="text-lg md:text-xl text-blue-300">Empowering 400M + worldwide with AI agent and Intelligent automation</p>
+                <p class="text-lg md:text-xl text-blue-300">Empowering 400M+ worldwide SMEs with AI agents and intelligent automation</p>
             </div>
         </section>
 
         <!-- Slide 2: Problem -->
         <section id="slide-2" class="slide">
+            <div class="slide-number">2</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-2">The SME Crisis</h2>
@@ -210,10 +229,11 @@
 
         <!-- Slide 3: Solution -->
         <section id="slide-3" class="slide bg-gray-100">
+            <div class="slide-number">3</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-7xl mx-auto text-center px-8">
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">AI-Powered BaaS Solution</h2>
-                <p class="text-xl md:text-2xl font-bold text-blue-700 mb-16">"Rent" an AI-driven operations team as a service</p>
+                <p class="text-xl md:text-2xl font-bold text-blue-700 mb-16">"Recruit" an AI-driven operations team as a service</p>
                 
                 <!-- Solution Grid -->
                 <div class="grid md:grid-cols-2 gap-12 w-full">
@@ -236,7 +256,7 @@
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-green-600">Smart Process Engine</h3>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI creates, enforces & optimizes SOPs automatically across all operations</p>
+                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI creates, enforces, and optimizes SOPs automatically across all operations</p>
                     </div>
 
                     <!-- Intelligence Solution -->
@@ -247,7 +267,7 @@
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-green-600">Predictive Intelligence</h3>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI predicts market changes & opportunities, enabling proactive strategic decisions</p>
+                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI predicts market changes and opportunities, enabling proactive strategic decisions</p>
                     </div>
 
                     <!-- Platform Solution -->
@@ -258,7 +278,7 @@
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-green-600">Composable Platform</h3>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">Enterprise-grade AI tools with consumer-simple interface & rapid deployment</p>
+                        <p class="text-gray-700 font-medium text-xl leading-relaxed">Enterprise-grade AI tools with consumer-friendly interface and rapid deployment</p>
                     </div>
                 </div>
             </div>
@@ -266,6 +286,7 @@
         
         <!-- Slide 4: Interactive Demo -->
         <section id="slide-4" class="slide">
+            <div class="slide-number">4</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-4xl mx-auto text-center w-full">
                 <h2 class="text-3xl md:text-5xl font-bold mb-2">ROI Calculator</h2>
@@ -300,6 +321,7 @@
 
         <!-- Slide 5: Market Opportunity -->
         <section id="slide-5" class="slide bg-gray-100">
+            <div class="slide-number">5</div>
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-8">Massive Market Opportunity</h2>
                 <p class="text-lg text-gray-600 mb-12">AI adoption is at an inflection point - only 13.5% of EU SMEs use AI today</p>
@@ -352,7 +374,7 @@
                         </div>
                         <h3 class="font-bold text-lg mb-2">Serviceable Market</h3>
                         <p class="text-2xl font-bold text-blue-600 mb-1">$25B</p>
-                        <p class="text-sm text-gray-500">EU + US SME market</p>
+                         <p class="text-sm text-gray-500">EU + US SME market</p>
                     </div>
                     <div class="flex-1 text-center">
                         <div class="flex justify-center mb-4">
@@ -362,7 +384,7 @@
                         </div>
                         <h3 class="font-bold text-lg mb-2">Obtainable Market</h3>
                         <p class="text-2xl font-bold text-blue-400 mb-1">$2.5B</p>
-                        <p class="text-sm text-gray-500">Initial target: 10-500 employee SMEs</p>
+                         <p class="text-sm text-gray-500">Initial target: 10-500 employee SMEs</p>
                     </div>
                 </div>
             </div>
@@ -370,8 +392,9 @@
         
         <!-- Slide 6: Competitive Positioning -->
         <section id="slide-6" class="slide bg-gray-100">
-          <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-          <div class="max-w-6xl mx-auto text-center">
+            <div class="slide-number">6</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
+            <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">Competitive Positioning</h2>
             <p class="text-lg text-gray-600 mb-8">Market Growth vs. Market Accessibility</p>
 
@@ -522,34 +545,34 @@
                       </div>
                       
                       <div class="grid md:grid-cols-3 gap-6 mb-8">
-                          <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">
+                    <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">
                               <h4 class="font-bold text-xl mb-4 text-red-800">ERP Systems</h4>
                               <p class="text-sm text-gray-600 mb-3">SAP, Oracle, Microsoft</p>
-                              <div class="text-left space-y-2 text-sm">
-                                  <div>❌ $millions & months to implement</div>
-                                  <div>❌ Requires dedicated IT staff</div>
-                                  <div>❌ Tool only - SME still does the work</div>
-                              </div>
-                          </div>
-                          <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
+                        <div class="text-left space-y-2 text-sm">
+                            <div>❌ $millions & months to implement</div>
+                            <div>❌ Requires dedicated IT staff</div>
+                            <div>❌ Tool only - SME still does the work</div>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
                               <h4 class="font-bold text-xl mb-4 text-yellow-800">Process Mining</h4>
                               <p class="text-sm text-gray-600 mb-3">Celonis, UiPath</p>
-                              <div class="text-left space-y-2 text-sm">
-                                  <div>❌ Diagnoses problems, doesn't solve them</div>
-                                  <div>❌ Requires existing digital processes</div>
-                                  <div>❌ Expert consultant required</div>
-                              </div>
-                          </div>
-                          <div class="bg-orange-50 p-6 rounded-xl border-2 border-orange-200">
+                        <div class="text-left space-y-2 text-sm">
+                            <div>❌ Diagnoses problems, doesn't solve them</div>
+                            <div>❌ Requires existing digital processes</div>
+                            <div>❌ Expert consultant required</div>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-xl border-2 border-orange-200">
                               <h4 class="font-bold text-xl mb-4 text-orange-800">Traditional Consulting</h4>
                               <p class="text-sm text-gray-600 mb-3">McKinsey, BCG, Deloitte</p>
-                              <div class="text-left space-y-2 text-sm">
-                                  <div>❌ Expensive & time-limited</div>
-                                  <div>❌ Delivers reports, not execution</div>
-                                  <div>❌ SMEs can't afford top firms</div>
-                              </div>
-                          </div>
-                      </div>
+                        <div class="text-left space-y-2 text-sm">
+                            <div>❌ Expensive & time-limited</div>
+                            <div>❌ Delivers reports, not execution</div>
+                            <div>❌ SMEs can't afford top firms</div>
+                        </div>
+                    </div>
+                </div>
 
                       <div class="bg-green-50 p-8 rounded-2xl border-2 border-green-200">
                           <h4 class="text-2xl font-bold text-green-800 mb-4">✅ NablaX AI Advantage</h4>
@@ -571,8 +594,9 @@
           </div>
         </section>
 
-        <!-- Slide 7: Business Model & Pricing (streamlined from old Slide 6) -->
+        <!-- Slide 7: Business Model & Pricing -->
         <section id="slide-7" class="slide">
+            <div class="slide-number">7</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-6xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-8">Business Model & Pricing</h2>
@@ -621,8 +645,9 @@
             </div>
         </section>
 
-        <!-- Slide 8: Proven Case Studies (moved from Slide 7) -->
+        <!-- Slide 8: Proven Case Studies -->
         <section id="slide-8" class="slide bg-gray-100">
+             <div class="slide-number">8</div>
              <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-12">Proven Results: Real Case Studies</h2>
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
@@ -674,8 +699,9 @@
             </div>
         </section>
 
-        <!-- Slide 9: Funding & Go-to-Market (moved from Slide 8) -->
+        <!-- Slide 9: Funding & Growth Strategy -->
         <section id="slide-9" class="slide">
+            <div class="slide-number">9</div>
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-8">Series A Funding</h2>
                 <p class="text-5xl md:text-7xl font-bold text-blue-700 mb-8">$5M</p>
@@ -724,13 +750,14 @@
                             <h4 class="font-semibold text-blue-700">Phase 3: Southern Europe</h4>
                             <p class="text-sm text-gray-600">Untapped market, high growth potential</p>
                         </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </section>
         
         <!-- Slide 10: Contact -->
         <section id="slide-10" class="slide bg-blue-900 text-white">
+            <div class="slide-number white">10</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-corner">
             <div class="text-center">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Transform SMEs?</h2>
@@ -744,7 +771,7 @@
                         <div>
                             <p class="text-lg font-semibold">Er Jin | CTO & Founder</p>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
         </section>
