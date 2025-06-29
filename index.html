@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -161,6 +160,67 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
         }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .close {
+            color: #9ca3af;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .close:hover {
+            color: #374151;
+            background-color: #f3f4f6;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -322,6 +382,7 @@
         <!-- Slide 5: Market Opportunity -->
         <section id="slide-5" class="slide bg-gray-100">
             <div class="slide-number">5</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-8">Massive Market Opportunity</h2>
                 <p class="text-lg text-gray-600 mb-12">AI adoption is at an inflection point - only 13.5% of EU SMEs use AI today</p>
@@ -387,9 +448,114 @@
                          <p class="text-sm text-gray-500">Initial target: 10-500 employee SMEs</p>
                     </div>
                 </div>
+                
+                <!-- Sources Button & Dropdown -->
+                <div class="absolute bottom-4 right-4">
+                    <div class="relative">
+                        <button id="sources-btn" class="bg-gray-500 hover:bg-gray-600 text-white text-xs px-3 py-1 rounded-md transition-colors duration-200 opacity-75 hover:opacity-100">
+                            Sources
+                        </button>
+                        
+                        <!-- Simple Sources Dropdown -->
+                        <div id="sources-dropdown" class="absolute bottom-8 right-0 bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs w-64 hidden">
+                            <div class="font-semibold text-gray-800 mb-2">Data Sources:</div>
+                            
+                            <div class="space-y-1">
+                                <div>$85B BPaaS: <a href="https://www.grandviewresearch.com/industry-analysis/business-process-as-a-service-bpaas-market" class="text-blue-600 hover:underline" target="_blank">Grand View Research</a></div>
+                                
+                                <div>$37B IA Market: <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-process-automation-market-202442386.html" class="text-green-600 hover:underline" target="_blank">MarketsandMarkets</a></div>
+                                
+                                <div>13.5% EU AI: <a href="https://digital-strategy.ec.europa.eu/en/library/desi-2024" class="text-purple-600 hover:underline" target="_blank">EU Commission</a></div>
+                                
+                                <div>400M SMEs: <a href="https://www.oecd.org/industry/sme-and-entrepreneurship-outlook/" class="text-orange-600 hover:underline" target="_blank">OECD</a></div>
+                                
+                                <div>50% GDP: <a href="https://www.worldbank.org/en/topic/smefinance" class="text-red-600 hover:underline" target="_blank">World Bank</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
+        <!-- Sources Modal -->
+        <div id="sources-modal" class="modal">
+            <div class="modal-content max-w-3xl">
+                <span class="close">&times;</span>
+                <h2 class="text-xl font-bold mb-4 text-center text-gray-800">📊 Data Sources</h2>
+                
+                <div class="grid gap-3">
+                    <!-- BPaaS Market -->
+                    <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-sm text-blue-800">$85B BPaaS Market</h3>
+                                <p class="text-xs text-gray-600 mt-1">Grand View Research 2024 • CAGR 26%</p>
+                                <a href="https://www.grandviewresearch.com/industry-analysis/business-process-as-a-service-bpaas-market" 
+                                   class="text-xs text-blue-500 hover:underline" target="_blank">View Report →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intelligent Automation -->
+                    <div class="bg-white p-3 rounded-lg border border-green-200 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-sm text-green-800">$37B Intelligent Automation</h3>
+                                <p class="text-xs text-gray-600 mt-1">MarketsandMarkets • 2030 Projection</p>
+                                <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-process-automation-market-202442386.html" 
+                                   class="text-xs text-green-500 hover:underline" target="_blank">View Report →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EU AI Adoption -->
+                    <div class="bg-white p-3 rounded-lg border border-purple-200 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-sm text-purple-800">13.5% EU SME AI Adoption</h3>
+                                <p class="text-xs text-gray-600 mt-1">European Commission DESI 2024</p>
+                                <a href="https://digital-strategy.ec.europa.eu/en/library/desi-2024" 
+                                   class="text-xs text-purple-500 hover:underline" target="_blank">Official Data →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Global SMEs -->
+                    <div class="bg-white p-3 rounded-lg border border-orange-200 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-sm text-orange-800">400M+ Global SMEs</h3>
+                                <p class="text-xs text-gray-600 mt-1">OECD SME Outlook 2023</p>
+                                <a href="https://www.oecd.org/industry/sme-and-entrepreneurship-outlook/" 
+                                   class="text-xs text-orange-500 hover:underline" target="_blank">OECD Data →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GDP Contribution -->
+                    <div class="bg-white p-3 rounded-lg border border-red-200 shadow-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-sm text-red-800">50% Global GDP Contribution</h3>
+                                <p class="text-xs text-gray-600 mt-1">World Bank SME Finance 2024</p>
+                                <a href="https://www.worldbank.org/en/topic/smefinance" 
+                                   class="text-xs text-red-500 hover:underline" target="_blank">World Bank →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-2 bg-gray-50 rounded text-center">
+                    <p class="text-xs text-gray-500">All data from authoritative sources (2023-2024)</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Slide 6: Competitive Positioning -->
         <section id="slide-6" class="slide bg-gray-100">
             <div class="slide-number">6</div>
@@ -645,10 +811,116 @@
             </div>
         </section>
 
-        <!-- Slide 8: Proven Case Studies -->
-        <section id="slide-8" class="slide bg-gray-100">
-             <div class="slide-number">8</div>
-             <div class="max-w-5xl mx-auto text-center">
+        <!-- Slide 8: Platform Architecture -->
+        <section id="slide-8" class="slide bg-white">
+            <div class="slide-number">8</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
+            <div class="max-w-6xl mx-auto p-8">
+                
+                <!-- Outer frame -->
+                <div class="border-2 border-blue-300 rounded-2xl p-6">
+                    <!-- Title -->
+                    <h2 class="text-3xl md:text-5xl font-bold text-center mb-6">NablaX</h2>
+
+                    <!-- Top row: Office Automation / Project Management -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <!-- Office Automation -->
+                        <div class="border border-blue-200 rounded-xl p-4">
+                            <h3 class="font-semibold text-lg text-center mb-3">Office Automation</h3>
+                            <div class="grid grid-cols-3 gap-2 text-xs text-center">
+                                <div>
+                                    <div class="text-2xl">📅</div>
+                                    Calendar
+                                </div>
+                                <div>
+                                    <div class="text-2xl">✉️</div>
+                                    Email
+                                </div>
+                                <div>
+                                    <div class="text-2xl">📄</div>
+                                    Document<br>Collaboration
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Management -->
+                        <div class="border border-blue-200 rounded-xl p-4">
+                            <h3 class="font-semibold text-lg text-center mb-3">Project Management</h3>
+                            <div class="grid grid-cols-3 gap-2 text-xs text-center">
+                                <div>
+                                    <div class="text-2xl">🗂️</div>
+                                    Task<br>Assignment
+                                </div>
+                                <div>
+                                    <div class="text-2xl">📈</div>
+                                    Progress<br>Tracking
+                                </div>
+                                <div>
+                                    <div class="text-2xl">📝</div>
+                                    Performance<br>Review
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle: BaaS core -->
+                    <div class="border-2 border-blue-300 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-bold text-center mb-1">Business-as-a-Service</h3>
+                        <p class="text-center text-xs text-gray-600 mb-4">Composable • Agile</p>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Core Services -->
+                            <div>
+                                <h4 class="font-semibold text-center mb-2">Core Services</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-center gap-2"><span class="text-2xl">⚙️</span> Process Automation</div>
+                                    <div class="flex items-center gap-2"><span class="text-2xl">🤝</span> Collaboration Services</div>
+                                </div>
+                            </div>
+
+                            <!-- Extensibility -->
+                            <div>
+                                <h4 class="font-semibold text-center mb-2">Platform Extensibility</h4>
+                                <div class="flex flex-col items-center gap-3 text-sm">
+                                    <span class="border px-3 py-1 rounded-full border-blue-400">SDK</span>
+                                    <span class="border px-3 py-1 rounded-full border-blue-400">API</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom row -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <!-- Project Admin / Data Analytics -->
+                        <div class="border border-blue-200 rounded-xl p-4">
+                            <div class="grid grid-cols-2 gap-3 text-xs text-center">
+                                <div>
+                                    <div class="text-2xl">🖥️</div>
+                                    Project<br>Administration
+                                </div>
+                                <div>
+                                    <div class="text-2xl">📊</div>
+                                    Data<br>Analytics
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center text-xs text-blue-600">API</div>
+                        </div>
+
+                        <!-- AI Agent -->
+                        <div class="border-2 border-blue-600 rounded-xl p-6 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-blue-800">AI Agent</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Proven Case Studies -->
+        <section id="slide-9" class="slide bg-gray-100">
+            <div class="slide-number">9</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
+            <div class="max-w-5xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-12">Proven Results: Real Case Studies</h2>
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                     <div class="bg-white p-6 rounded-xl shadow-lg text-left">
@@ -699,9 +971,10 @@
             </div>
         </section>
 
-        <!-- Slide 9: Funding & Growth Strategy -->
-        <section id="slide-9" class="slide">
-            <div class="slide-number">9</div>
+        <!-- Slide 10: Funding & Growth Strategy -->
+        <section id="slide-10" class="slide">
+            <div class="slide-number">10</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-5xl font-bold mb-8">Series A Funding</h2>
                 <p class="text-5xl md:text-7xl font-bold text-blue-700 mb-8">$5M</p>
@@ -755,9 +1028,9 @@
           </div>
         </section>
         
-        <!-- Slide 10: Contact -->
-        <section id="slide-10" class="slide bg-blue-900 text-white">
-            <div class="slide-number white">10</div>
+        <!-- Slide 11: Contact -->
+        <section id="slide-11" class="slide bg-blue-900 text-white">
+            <div class="slide-number white">11</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-corner">
             <div class="text-center">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Transform SMEs?</h2>
@@ -1074,6 +1347,52 @@
                         competitiveModal.classList.add('hidden');
                         document.body.style.overflow = 'auto';
                     }
+                });
+            }
+
+            // Sources modal functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const sourcesBtn = document.getElementById('sources-btn');
+                const sourcesModal = document.getElementById('sources-modal');
+                
+                if (sourcesBtn && sourcesModal) {
+                    const sourcesClose = sourcesModal.querySelector('.close');
+
+                    sourcesBtn.addEventListener('click', () => {
+                        sourcesModal.style.display = 'block';
+                        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    });
+
+                    if (sourcesClose) {
+                        sourcesClose.addEventListener('click', () => {
+                            sourcesModal.style.display = 'none';
+                            document.body.style.overflow = 'auto'; // Restore scrolling
+                        });
+                    }
+
+                    // Close sources modal when clicking outside
+                    sourcesModal.addEventListener('click', (event) => {
+                        if (event.target === sourcesModal) {
+                            sourcesModal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            });
+
+            // Simple sources dropdown
+            const sourcesBtn = document.getElementById('sources-btn');
+            const sourcesDropdown = document.getElementById('sources-dropdown');
+
+            if (sourcesBtn && sourcesDropdown) {
+                sourcesBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    sourcesDropdown.classList.toggle('hidden');
+                });
+
+                // Close when clicking outside
+                document.addEventListener('click', () => {
+                    sourcesDropdown.classList.add('hidden');
                 });
             }
 
