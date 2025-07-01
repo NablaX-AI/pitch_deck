@@ -6,12 +6,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
             scroll-behavior: smooth;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
         }
+        
+        /* Enhanced Typography */
+        .slide h1 {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+        }
+        
+        .slide h2 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        .slide h3 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+        
+        .slide p {
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        .slide .subtitle {
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+        
+        .slide .description {
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Dark theme for all slides */
         .slide {
             min-height: 100vh;
             display: flex;
@@ -23,11 +62,95 @@
             opacity: 0;
             transform: translateY(20px);
             padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(139, 92, 246, 0.03) 50%, rgba(236, 72, 153, 0.03) 100%);
+            pointer-events: none;
+        }
+        
         .slide.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Enhanced card styling for dark theme */
+        .dark-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dark-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        /* Problem cards for dark theme */
+        .problem-card-dark {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-left: 4px solid #ef4444;
+            color: #e2e8f0;
+        }
+        
+        .problem-card-dark:hover {
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 15px 30px rgba(239, 68, 68, 0.2);
+        }
+        
+        /* Solution cards for dark theme */
+        .solution-card-dark {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-left: 4px solid #22c55e;
+            color: #e2e8f0;
+        }
+        
+        .solution-card-dark:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+        }
+        
+        /* ROI Calculator dark theme */
+        .roi-calculator-dark {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Floating animation from reference */
+        .hero-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Enhanced gradients */
+        .gradient-text-soft {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Rest of existing styles... */
         .progress-dots {
             position: fixed;
             right: 2rem;
@@ -41,12 +164,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: #d1d5db; /* gray-300 */
+            background-color: #d1d5db;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
         .dot.active {
-            background-color: #1e40af; /* blue-800 */
+            background-color: #1e40af;
             transform: scale(1.25);
         }
         .nav-buttons {
@@ -59,10 +182,10 @@
             z-index: 50;
         }
         .nav-button {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(30, 41, 59, 0.9);
             backdrop-filter: blur(5px);
-            border: 1px solid #e5e7eb;
-            color: #374151;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #e2e8f0;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
             font-weight: 600;
@@ -71,7 +194,8 @@
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
         .nav-button:hover {
-            background-color: #f3f4f6;
+            background-color: rgba(30, 41, 59, 1);
+            border-color: rgba(99, 102, 241, 0.5);
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
@@ -108,60 +232,50 @@
             0% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); }
             100% { filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.4)); }
         }
-        .slide {
-            position: relative;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .company-bubble {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .company-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            z-index: 10;
-        }
-        .problem-card {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .problem-card:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
-        }
-        .modal-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-left: 4px solid #3b82f6;
-        }
-        .solution-card {
-            transition: all 0.3s ease;
-        }
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
         .slide-number {
             position: absolute;
             top: 2rem;
             right: 2rem;
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            color: #374151;
+            color: #e2e8f0;
             padding: 0.5rem 1rem;
             border-radius: 9999px;
             font-weight: 600;
             font-size: 0.875rem;
             z-index: 20;
-        }
-        .slide-number.white {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
         
-        /* Modal Styles */
+        /* Value prop cards */
+        .value-prop-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-prop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .value-prop-card:hover::before {
+            left: 100%;
+        }
+        
+        .value-prop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+        
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -170,22 +284,24 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(2px);
         }
         
         .modal-content {
-            background-color: white;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
             margin: 5% auto;
             padding: 1.5rem;
             border-radius: 1rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             width: 90%;
             max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
             position: relative;
             animation: modalSlideIn 0.3s ease-out;
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
         
         @keyframes modalSlideIn {
@@ -200,7 +316,7 @@
         }
         
         .close {
-            color: #9ca3af;
+            color: #94a3b8;
             float: right;
             font-size: 2rem;
             font-weight: bold;
@@ -218,191 +334,376 @@
         }
         
         .close:hover {
-            color: #374151;
-            background-color: #f3f4f6;
+            color: #e2e8f0;
+            background-color: rgba(148, 163, 184, 0.2);
+        }
+
+        .hover-source {
+            cursor: help;
+            transition: all 0.2s ease;
+            border-radius: 0.25rem;
+            padding: 0.25rem;
+        }
+        .hover-source:hover {
+            background-color: rgba(51, 65, 85, 0.3);
+            transform: translateY(-1px);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
     <main id="pitch-deck">
         <!-- Slide 1: Welcome -->
-        <section id="slide-1" class="slide active bg-blue-900 text-white">
-            <div class="slide-number white">1</div>
-            <div class="text-center">
+        <section id="slide-1" class="slide active">
+            <div class="slide-number">1</div>
+            <!-- Background gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20"></div>
+            
+            <div class="text-center relative z-10">
                 <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-main">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">NablaX AI</h1>
-                <p class="text-xl md:text-2xl text-blue-200 mb-4">AI-Powered Business-as-a-Service</p>
-                <p class="text-lg md:text-xl text-blue-300">Empowering 400M+ worldwide SMEs with AI agents and intelligent automation</p>
+                <div class="hero-animation">
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                        <span class="gradient-text-soft">NablaX AI</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto leading-relaxed subtitle">AI-Powered Business-as-a-Service Platform</p>
+                    <p class="text-lg md:text-xl text-slate-400 mb-12 description">Empowering 400M+ SMEs with intelligent automation</p>
+                    
+                    <!-- Key Value Props -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="bg-indigo-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">AI-Powered</h3>
+                            <p class="text-sm text-slate-400 description">Intelligent automation replaces manual work</p>
+                        </div>
+                        
+                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">Composable</h3>
+                            <p class="text-sm text-slate-400 description">Modular solutions that adapt to your business</p>
+                        </div>
+                        
+                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="bg-emerald-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">Fast Deploy</h3>
+                            <p class="text-sm text-slate-400 description">Go live in days, not months</p>
+                        </div>
+                        
+                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="bg-amber-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">ROI Focused</h3>
+                            <p class="text-sm text-slate-400 description">Measurable business transformation</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Slide 2: Problem -->
+        <!-- Slide 2: The Problem -->
         <section id="slide-2" class="slide">
             <div class="slide-number">2</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-2">The SME Crisis</h2>
-                <p class="text-lg md:text-xl text-gray-500 mb-4">90% of global businesses struggle with operational inefficiencies</p>
-                <p class="text-md text-gray-400 mb-12">45% fail within 5 years due to poor management & reactive operations</p>
-                
-                <div class="grid md:grid-cols-2 gap-8 text-left">
-                    <div class="problem-card bg-white p-6 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-problem="time-waste">
-                        <h3 class="font-bold text-xl mb-2 text-red-600">36% Time Wasted</h3>
-                        <p class="text-gray-700">Repetitive admin tasks instead of strategic growth</p>
-                        <p class="text-sm text-blue-500 mt-2 font-medium">details →</p>
+            <div class="max-w-6xl mx-auto px-6 relative z-10 text-center">
+                <div class="mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6 text-slate-100">
+                        The <span class="text-red-400">Enterprise Paradox</span>
+                    </h2>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto subtitle">
+                        SMEs need enterprise-level capabilities but can't afford enterprise complexity
+                    </p>
                     </div>
                     
-                    <div class="problem-card bg-white p-6 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-problem="lack-sops">
-                        <h3 class="font-bold text-xl mb-2 text-red-600">Lack of SOPs</h3>
-                        <p class="text-gray-700">Ad-hoc operations without structured processes</p>
-                        <p class="text-sm text-blue-500 mt-2 font-medium">details →</p>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="problem-card-dark p-8 rounded-xl text-left">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-red-400">Fixed Teams</h3>
+                        </div>
+                        <p class="text-slate-300 text-lg description">Can't hire/fire based on workload</p>
+                        <p class="text-slate-400 mt-2">Pay for idle capacity or lack resources</p>
                     </div>
                     
-                    <div class="problem-card bg-white p-6 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-problem="reactive-business">
-                        <h3 class="font-bold text-xl mb-2 text-red-600">Reactive Operations</h3>
-                        <p class="text-gray-700">Slow response to market changes & opportunities</p>
-                        <p class="text-sm text-blue-500 mt-2 font-medium">details →</p>
+                    <div class="problem-card-dark p-8 rounded-xl text-left">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-red-400">Rigid Systems</h3>
+                        </div>
+                        <p class="text-slate-300 text-lg description">One-size-fits-all enterprise software</p>
+                        <p class="text-slate-400 mt-2">Can't adapt to changing business needs</p>
                     </div>
                     
-                    <div class="problem-card bg-white p-6 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105" data-problem="technology-gap">
-                        <h3 class="font-bold text-xl mb-2 text-red-600">Technology Gap</h3>
-                        <p class="text-gray-700">Outdated systems and lack of digital integration</p>
-                        <p class="text-sm text-blue-500 mt-2 font-medium">details →</p>
+                    <div class="problem-card-dark p-8 rounded-xl text-left">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                </svg>
                     </div>
+                            <h3 class="text-2xl font-bold text-red-400">High Overhead</h3>
                 </div>
+                        <p class="text-slate-300 text-lg description">Enterprise licenses + implementation</p>
+                        <p class="text-slate-400 mt-2">Millions upfront, months to deploy</p>
             </div>
             
-            <!-- Modal for detailed problem breakdown -->
-            <div id="problem-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-                <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                    <div class="p-8">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 id="modal-title" class="text-2xl font-bold text-red-600"></h3>
-                            <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    <div class="problem-card-dark p-8 rounded-xl text-left">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
                         </div>
-                        <div id="modal-content" class="space-y-6"></div>
+                            <h3 class="text-2xl font-bold text-red-400">Scaling Bottleneck</h3>
+                        </div>
+                        <p class="text-slate-300 text-lg description">Growth limited by human capacity</p>
+                        <p class="text-slate-400 mt-2">Can't scale functions instantly</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 3: Solution -->
-        <section id="slide-3" class="slide bg-gray-100">
+        <!-- Slide 3: Composable Enterprise Solution -->
+        <section id="slide-3" class="slide">
             <div class="slide-number">3</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-7xl mx-auto text-center px-8">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">AI-Powered BaaS Solution</h2>
-                <p class="text-xl md:text-2xl font-bold text-blue-700 mb-16">"Recruit" an AI-driven operations team as a service</p>
-                
-                <!-- Solution Grid -->
-                <div class="grid md:grid-cols-2 gap-12 w-full">
-                    <!-- Time Solution -->
-                    <div class="solution-card bg-white p-12 rounded-2xl shadow-xl border-l-4 border-green-500 min-h-[280px] flex flex-col justify-center">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
-                                <span class="text-3xl">⏰</span>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-green-600">Intelligent Automation</h3>
+            <div class="max-w-6xl mx-auto px-6 relative z-10 text-center">
+                <div class="mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6 text-slate-100">
+                        <span class="gradient-text-soft">Composable Enterprise</span>
+                    </h2>
+                    <p class="text-xl text-slate-300 max-w-3xl mx-auto subtitle">
+                        AI agents that work as an on-demand team - deploy and scale instantly
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="dark-card p-8 rounded-xl shadow-lg text-center">
+                        <div class="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI agents handle 100% of repetitive tasks, freeing owners for strategic growth and innovation</p>
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Deploy Instantly</h3>
+                        <p class="text-slate-400">AI agents activate in minutes, not months</p>
                     </div>
 
-                    <!-- Process Solution -->
-                    <div class="solution-card bg-white p-12 rounded-2xl shadow-xl border-l-4 border-green-500 min-h-[280px] flex flex-col justify-center">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
-                                <span class="text-3xl">📋</span>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-green-600">Smart Process Engine</h3>
+                    <div class="dark-card p-8 rounded-xl shadow-lg text-center">
+                        <div class="w-16 h-16 bg-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                            </svg>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI creates, enforces, and optimizes SOPs automatically across all operations</p>
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Scale Dynamically</h3>
+                        <p class="text-slate-400">Pay only for what you use, when you use it</p>
                     </div>
 
-                    <!-- Intelligence Solution -->
-                    <div class="solution-card bg-white p-12 rounded-2xl shadow-xl border-l-4 border-green-500 min-h-[280px] flex flex-col justify-center">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
-                                <span class="text-3xl">🔥</span>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-green-600">Predictive Intelligence</h3>
+                    <div class="dark-card p-8 rounded-xl shadow-lg text-center">
+                        <div class="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                         </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">AI predicts market changes and opportunities, enabling proactive strategic decisions</p>
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Zero Overhead</h3>
+                        <p class="text-slate-400">No training, no management, no downtime</p>
                     </div>
+                </div>
 
-                    <!-- Platform Solution -->
-                    <div class="solution-card bg-white p-12 rounded-2xl shadow-xl border-l-4 border-green-500 min-h-[280px] flex flex-col justify-center">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
-                                <span class="text-3xl">💻</span>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-bold text-green-600">Composable Platform</h3>
-                        </div>
-                        <p class="text-gray-700 font-medium text-xl leading-relaxed">Enterprise-grade AI tools with consumer-friendly interface and rapid deployment</p>
-                    </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-gradient-soft mb-4">6 Hours to Full Deployment</div>
+                    <p class="text-lg text-slate-400 italic">
+                        "AI agents that work like your best employees, available 24/7"
+                    </p>
                 </div>
             </div>
         </section>
-        
-        <!-- Slide 4: Interactive Demo -->
+
+        <!-- Slide 4: Core Value Proposition -->
         <section id="slide-4" class="slide">
             <div class="slide-number">4</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-4xl mx-auto text-center w-full">
-                <h2 class="text-3xl md:text-5xl font-bold mb-2">ROI Calculator</h2>
-                <p class="text-lg md:text-xl text-gray-500 mb-12">Drag the slider to see how much NablaX AI can save your company</p>
-                <div class="bg-white p-8 rounded-xl shadow-lg w-full">
-                    <div class="mb-8">
-                        <label for="employee-slider" class="block font-bold text-lg mb-2">Your Team Size (employees)</label>
-                        <input id="employee-slider" type="range" min="5" max="500" value="50" class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer range-lg">
-                        <div class="text-center font-bold text-2xl text-blue-800 mt-2"><span id="employee-count">50</span> employees</div>
+            <div class="max-w-7xl mx-auto text-center px-8 relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-slate-100">AI-Powered BaaS Solution</h2>
+                <p class="text-xl md:text-2xl font-semibold text-emerald-400 mb-16 subtitle">"Recruit" an AI-driven operations team as a service</p>
+                
+                <!-- Core Features Grid -->
+                <div class="grid md:grid-cols-2 gap-12 w-full">
+                    <!-- Intelligent Engine -->
+                    <div class="text-center">
+                        <div class="bg-blue-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-blue-400 mb-4">Intelligent Engine</h3>
+                        <p class="text-slate-300 font-medium text-lg leading-relaxed description">AI Agent system with multi-model LLM, smart memory, task planning, and tool integration</p>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-6 text-left">
-                         <div class="bg-blue-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-gray-600">Admin Hours Saved</h4>
-                            <p class="text-2xl font-bold text-blue-600"><span id="hours-saved">900</span> hrs/week</p>
-                            <p class="text-sm text-gray-500">36% of work week recovered</p>
+
+                    <!-- Business Applications -->
+                    <div class="text-center">
+                        <div class="bg-purple-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                            </svg>
                         </div>
-                        <div class="bg-green-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-gray-600">Annual Cost Savings</h4>
-                            <p class="text-2xl font-bold text-green-600">$<span id="cost-saved">936,000</span></p>
-                            <p class="text-sm text-gray-500">Based on $20/hr avg wage</p>
-                        </div>
-                        <div class="bg-purple-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-gray-600">NablaX AI Cost</h4>
-                            <p class="text-2xl font-bold text-purple-600">$<span id="platform-cost">30,000</span>/year</p>
-                            <p class="text-sm text-gray-500">31x ROI</p>
-                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-purple-400 mb-4">Business Applications</h3>
+                        <p class="text-slate-300 font-medium text-lg leading-relaxed description">Office automation, project management, customer service - ready to use, easy to customize</p>
                     </div>
-                    <p class="text-xs text-gray-400 mt-6">*Calculation based on 36% admin time reduction, $20/hr average wage, and $50/employee/month platform cost.</p>
+
+                    <!-- Open Platform -->
+                    <div class="text-center">
+                        <div class="bg-emerald-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-emerald-400 mb-4">Open Platform</h3>
+                        <p class="text-slate-300 font-medium text-lg leading-relaxed description">Complete SDK, rich APIs, visual integration tools - build your custom solution</p>
+                    </div>
+
+                    <!-- Proven ROI -->
+                    <div class="text-center">
+                        <div class="bg-amber-500/10 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-amber-400 mb-4">Proven ROI</h3>
+                        <p class="text-slate-300 font-medium text-lg leading-relaxed description">31x ROI, 3.4 month payback period, measurable business transformation</p>
+                    </div>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="mt-16 grid md:grid-cols-3 gap-8">
+                    <div class="dark-card p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-blue-400 mb-2">6 Hours</div>
+                        <div class="text-slate-300 description">From setup to value</div>
+                    </div>
+                    <div class="dark-card p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-emerald-400 mb-2">400M+</div>
+                        <div class="text-slate-300 description">SMEs worldwide</div>
+                    </div>
+                    <div class="dark-card p-6 rounded-xl text-center">
+                        <div class="text-4xl font-bold text-purple-400 mb-2">31x</div>
+                        <div class="text-slate-300 description">Average ROI</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 5: Market Opportunity -->
-        <section id="slide-5" class="slide bg-gray-100">
+        <!-- Slide 5: German Market ROI Calculator -->
+        <section id="slide-5" class="slide">
             <div class="slide-number">5</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8">Massive Market Opportunity</h2>
-                <p class="text-lg text-gray-600 mb-12">AI adoption is at an inflection point - only 13.5% of EU SMEs use AI today</p>
+            <div class="max-w-4xl mx-auto text-center w-full">
+                <h2 class="text-3xl md:text-5xl font-bold mb-2 text-slate-100">German SME ROI</h2>
+                <p class="text-lg md:text-xl text-slate-400 mb-12">Drag the slider to see how much NablaX AI can save your German company</p>
                 
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="font-bold text-xl mb-4 text-blue-800">Market Size</h3>
-                        <div class="text-left space-y-3">
-                            <div class="flex justify-between"><span>Global BPaaS Market:</span><strong>$85B (2024)</strong></div>
-                            <div class="flex justify-between"><span>Intelligent Automation:</span><strong>$37B by 2030</strong></div>
-                            <div class="flex justify-between"><span>BaaS Industry Opportunity:</span><strong>$7T projected</strong></div>
+                <div class="dark-card p-8 rounded-xl shadow-lg w-full">
+                    <div class="mb-8">
+                        <label for="employee-slider" class="block font-bold text-lg mb-2 text-slate-200">Your Team Size (employees)</label>
+                        <input id="employee-slider" type="range" min="5" max="300" value="50" 
+                               class="w-full h-3 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-400"
+                               oninput="updateGermanROI()">
+                        <div class="text-center font-bold text-2xl text-blue-400 mt-2">
+                            <span id="employee-count">50</span> employees
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="font-bold text-xl mb-4 text-green-800">Growth Drivers</h3>
-                        <div class="text-left space-y-3">
-                            <div>✓ <strong>85% growth</strong> in EU SME AI adoption since 2023</div>
-                            <div>✓ <strong>90% of adopters</strong> report productivity improvements</div>
-                            <div>✓ <strong>400M+ SMEs</strong> worldwide (90% of all businesses)</div>
-                            <div>✓ <strong>~50% of global GDP</strong> from SME sector</div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 text-left">
+                        <div class="bg-blue-900/30 border border-blue-500/30 p-6 rounded-lg">
+                            <h4 class="font-bold text-slate-300">Productivity Hours Saved</h4>
+                            <p class="text-2xl font-bold text-blue-400"><span id="hours-saved">500</span> hrs/week</p>
+                            <p class="text-sm text-slate-500">25% productivity improvement</p>
+                        </div>
+                        
+                        <div class="bg-green-900/30 border border-green-500/30 p-6 rounded-lg">
+                            <h4 class="font-bold text-slate-300">Annual Cost Savings</h4>
+                            <p class="text-2xl font-bold text-green-400">€<span id="cost-saved">687,500</span></p>
+                            <p class="text-sm text-slate-500">Based on €55k avg salary</p>
+                        </div>
+                        
+                        <div class="bg-purple-900/30 border border-purple-500/30 p-6 rounded-lg">
+                            <h4 class="font-bold text-slate-300">NablaX AI Cost</h4>
+                            <p class="text-2xl font-bold text-purple-400">€<span id="platform-cost">100,000</span>/year</p>
+                            <p class="text-sm text-slate-500"><span id="roi-multiplier">6.9x</span> ROI</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-lg text-slate-300">Net Savings</div>
+                            <div class="text-3xl font-bold text-green-400">€<span id="net-savings">587,500</span></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xs text-slate-500 mt-6">*Based on German SME data: 25% productivity loss recovery, €55k average salary, €2k/employee annual cost. Sources: Destatis 2024, KfW 2024</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Market Opportunity -->
+        <section id="slide-6" class="slide">
+            <div class="slide-number">6</div>
+            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
+            <div class="max-w-5xl mx-auto text-center relative">
+                <h2 class="text-3xl md:text-5xl font-bold mb-8 text-slate-100">Massive Market Opportunity</h2>
+                <p class="text-lg text-slate-400 mb-12">AI adoption is at an inflection point - only 13.5% of EU SMEs use AI today</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="dark-card p-6 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl mb-4 text-blue-400">Market Size</h3>
+                        <div class="text-left space-y-3 text-slate-300">
+                            <div class="flex justify-between hover-source" data-source="Grand View Research BPaaS Market Report (2024)">
+                                <span>Global BPaaS Market:</span>
+                                <strong class="text-slate-100">$85B (2024)</strong>
+                            </div>
+                            <div class="flex justify-between hover-source" data-source="MarketsandMarkets Intelligent Automation Report (2024)">
+                                <span>Intelligent Automation:</span>
+                                <strong class="text-slate-100">$37B by 2030</strong>
+                            </div>
+                            <div class="flex justify-between hover-source" data-source="McKinsey Global Institute AI Impact Analysis (2024)">
+                                <span>BaaS Industry Opportunity:</span>
+                                <strong class="text-slate-100">$7T projected</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dark-card p-6 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-xl mb-4 text-green-400">Growth Drivers</h3>
+                        <div class="text-left space-y-3 text-slate-300">
+                            <div class="hover-source" data-source="European Commission DESI Report (2024)">
+                                ✓ <strong class="text-slate-100">85% growth</strong> in EU SME AI adoption since 2023
+                            </div>
+                            <div class="hover-source" data-source="European Commission DESI Report (2024)">
+                                ✓ <strong class="text-slate-100">90% of adopters</strong> report productivity improvements
+                            </div>
+                            <div class="hover-source" data-source="OECD SME and Entrepreneurship Outlook (2024)">
+                                ✓ <strong class="text-slate-100">400M+ SMEs</strong> worldwide (90% of all businesses)
+                            </div>
+                            <div class="hover-source" data-source="World Bank SME Finance Report (2024)">
+                                ✓ <strong class="text-slate-100">~50% of global GDP</strong> from SME sector
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -410,410 +711,282 @@
                 <div class="flex justify-center items-end gap-16 max-w-4xl mx-auto">
                     <div class="flex-1 text-center">
                         <div class="flex justify-center mb-4 relative">
-                            <div class="bg-blue-200 w-32 h-64 rounded-lg flex items-end relative">
-                                <div class="bg-blue-800 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 100%;"></div>
-                                <!-- Growth arrow indicator -->
+                            <div class="bg-slate-600 w-32 h-64 rounded-lg flex items-end relative">
+                                <div class="bg-blue-600 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 100%;"></div>
                                 <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
                                     <div class="flex flex-col items-center">
-                                        <svg class="w-6 h-6 text-green-500 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg class="w-6 h-6 text-green-400 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 011.414 0L10 4.414l3.293 3.293a1 1 0 001.414-1.414l-4-4a1 1 0 00-1.414 0l-4 4a1 1 0 000 1.414z" clip-rule="evenodd"/>
                                         </svg>
-                                        <div class="text-xs text-green-600 font-semibold">Growing</div>
+                                        <span class="text-xs text-green-400 font-bold">+85%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Total Addressable Market</h3>
-                        <p class="text-2xl font-bold text-blue-800 mb-1">$85B</p>
-                        <p class="text-sm text-gray-500">Global BPaaS Market</p>
+                        <div class="text-center hover-source" data-source="Combined market analysis from multiple sources (2024)">
+                            <div class="text-2xl font-bold text-slate-100">$85B</div>
+                            <div class="text-sm text-slate-400">TAM (Total Addressable Market)</div>
+                        </div>
                     </div>
+                    
                     <div class="flex-1 text-center">
-                        <div class="flex justify-center mb-4">
-                            <div class="bg-blue-200 w-32 h-64 rounded-lg flex items-end">
-                                <div class="bg-blue-600 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 29.4%;"></div>
+                        <div class="flex justify-center mb-4 relative">
+                            <div class="bg-slate-600 w-32 h-64 rounded-lg flex items-end relative">
+                                <div class="bg-purple-600 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 60%;"></div>
                             </div>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Serviceable Market</h3>
-                        <p class="text-2xl font-bold text-blue-600 mb-1">$25B</p>
-                         <p class="text-sm text-gray-500">EU + US SME market</p>
+                        <div class="text-center hover-source" data-source="NablaX market analysis based on EU SME segments (2024)">
+                            <div class="text-2xl font-bold text-slate-100">$12B</div>
+                            <div class="text-sm text-slate-400">SAM (Serviceable Addressable Market)</div>
+                        </div>
                     </div>
+                    
                     <div class="flex-1 text-center">
-                        <div class="flex justify-center mb-4">
-                            <div class="bg-blue-200 w-32 h-64 rounded-lg flex items-end">
-                                <div class="bg-blue-400 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 2.9%;"></div>
+                        <div class="flex justify-center mb-4 relative">
+                            <div class="bg-slate-600 w-32 h-64 rounded-lg flex items-end relative">
+                                <div class="bg-green-600 w-full rounded-lg transition-all duration-1000 ease-out" style="height: 25%;"></div>
                             </div>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Obtainable Market</h3>
-                        <p class="text-2xl font-bold text-blue-400 mb-1">$2.5B</p>
-                         <p class="text-sm text-gray-500">Initial target: 10-500 employee SMEs</p>
-                    </div>
-                </div>
-                
-                <!-- Sources Button & Dropdown -->
-                <div class="absolute bottom-4 right-4">
-                    <div class="relative">
-                        <button id="sources-btn" class="bg-gray-500 hover:bg-gray-600 text-white text-xs px-3 py-1 rounded-md transition-colors duration-200 opacity-75 hover:opacity-100">
-                            Sources
-                        </button>
-                        
-                        <!-- Simple Sources Dropdown -->
-                        <div id="sources-dropdown" class="absolute bottom-8 right-0 bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs w-64 hidden">
-                            <div class="font-semibold text-gray-800 mb-2">Data Sources:</div>
-                            
-                            <div class="space-y-1">
-                                <div>$85B BPaaS: <a href="https://www.grandviewresearch.com/industry-analysis/business-process-as-a-service-bpaas-market" class="text-blue-600 hover:underline" target="_blank">Grand View Research</a></div>
-                                
-                                <div>$37B IA Market: <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-process-automation-market-202442386.html" class="text-green-600 hover:underline" target="_blank">MarketsandMarkets</a></div>
-                                
-                                <div>13.5% EU AI: <a href="https://digital-strategy.ec.europa.eu/en/library/desi-2024" class="text-purple-600 hover:underline" target="_blank">EU Commission</a></div>
-                                
-                                <div>400M SMEs: <a href="https://www.oecd.org/industry/sme-and-entrepreneurship-outlook/" class="text-orange-600 hover:underline" target="_blank">OECD</a></div>
-                                
-                                <div>50% GDP: <a href="https://www.worldbank.org/en/topic/smefinance" class="text-red-600 hover:underline" target="_blank">World Bank</a></div>
-                            </div>
+                        <div class="text-center hover-source" data-source="NablaX 5-year market penetration projection (2024)">
+                            <div class="text-2xl font-bold text-slate-100">$500M</div>
+                            <div class="text-sm text-slate-400">SOM (Serviceable Obtainable Market)</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Hover Source Tooltip -->
+                <div id="source-tooltip" class="hidden fixed bg-slate-900 border border-slate-600 rounded-lg p-3 text-xs text-slate-300 z-50 shadow-xl max-w-xs">
+                    <div class="font-bold text-slate-100 mb-1">Source:</div>
+                    <div id="tooltip-content"></div>
+                </div>
+            </div>
+            
+            <!-- Simple Source Links - Bottom Right (outside main content) -->
+            <div class="absolute bottom-2 right-2 text-xs text-slate-500 space-y-1 text-right">
+                <div class="text-slate-400">Sources:</div>
+                <div>$85B BPaaS: <a href="https://www.grandviewresearch.com/industry-analysis/business-process-as-a-service-bpaas-market" class="text-blue-400 hover:underline" target="_blank">Grand View Research</a></div>
+                <div>$37B IA Market: <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-process-automation-market-202442386.html" class="text-green-400 hover:underline" target="_blank">MarketsandMarkets</a></div>
+                <div>13.5% EU AI: <a href="https://digital-strategy.ec.europa.eu/en/library/desi-2024" class="text-purple-400 hover:underline" target="_blank">EU Commission</a></div>
+                <div>400M SMEs: <a href="https://www.oecd.org/industry/sme-and-entrepreneurship-outlook/" class="text-orange-400 hover:underline" target="_blank">OECD</a></div>
+                <div>50% GDP: <a href="https://www.worldbank.org/en/topic/smefinance" class="text-red-400 hover:underline" target="_blank">World Bank</a></div>
             </div>
         </section>
         
-        <!-- Sources Modal -->
-        <div id="sources-modal" class="modal">
-            <div class="modal-content max-w-3xl">
-                <span class="close">&times;</span>
-                <h2 class="text-xl font-bold mb-4 text-center text-gray-800">📊 Data Sources</h2>
-                
-                <div class="grid gap-3">
-                    <!-- BPaaS Market -->
-                    <div class="bg-white p-3 rounded-lg border border-blue-200 shadow-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-sm text-blue-800">$85B BPaaS Market</h3>
-                                <p class="text-xs text-gray-600 mt-1">Grand View Research 2024 • CAGR 26%</p>
-                                <a href="https://www.grandviewresearch.com/industry-analysis/business-process-as-a-service-bpaas-market" 
-                                   class="text-xs text-blue-500 hover:underline" target="_blank">View Report →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Intelligent Automation -->
-                    <div class="bg-white p-3 rounded-lg border border-green-200 shadow-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-sm text-green-800">$37B Intelligent Automation</h3>
-                                <p class="text-xs text-gray-600 mt-1">MarketsandMarkets • 2030 Projection</p>
-                                <a href="https://www.marketsandmarkets.com/Market-Reports/intelligent-process-automation-market-202442386.html" 
-                                   class="text-xs text-green-500 hover:underline" target="_blank">View Report →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- EU AI Adoption -->
-                    <div class="bg-white p-3 rounded-lg border border-purple-200 shadow-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-sm text-purple-800">13.5% EU SME AI Adoption</h3>
-                                <p class="text-xs text-gray-600 mt-1">European Commission DESI 2024</p>
-                                <a href="https://digital-strategy.ec.europa.eu/en/library/desi-2024" 
-                                   class="text-xs text-purple-500 hover:underline" target="_blank">Official Data →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Global SMEs -->
-                    <div class="bg-white p-3 rounded-lg border border-orange-200 shadow-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-sm text-orange-800">400M+ Global SMEs</h3>
-                                <p class="text-xs text-gray-600 mt-1">OECD SME Outlook 2023</p>
-                                <a href="https://www.oecd.org/industry/sme-and-entrepreneurship-outlook/" 
-                                   class="text-xs text-orange-500 hover:underline" target="_blank">OECD Data →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- GDP Contribution -->
-                    <div class="bg-white p-3 rounded-lg border border-red-200 shadow-sm">
-                        <div class="flex items-start gap-3">
-                            <div class="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-sm text-red-800">50% Global GDP Contribution</h3>
-                                <p class="text-xs text-gray-600 mt-1">World Bank SME Finance 2024</p>
-                                <a href="https://www.worldbank.org/en/topic/smefinance" 
-                                   class="text-xs text-red-500 hover:underline" target="_blank">World Bank →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 p-2 bg-gray-50 rounded text-center">
-                    <p class="text-xs text-gray-500">All data from authoritative sources (2023-2024)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: Competitive Positioning -->
-        <section id="slide-6" class="slide bg-gray-100">
-            <div class="slide-number">6</div>
+        <!-- Slide 7: Competitive Positioning -->
+        <section id="slide-7" class="slide">
+            <div class="slide-number">7</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Competitive Positioning</h2>
-            <p class="text-lg text-gray-600 mb-8">Market Growth vs. Market Accessibility</p>
+            <div class="max-w-6xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 text-slate-100">Competitive Positioning</h2>
+            <p class="text-xl text-slate-300 mb-8 subtitle">Market Growth vs. Market Accessibility</p>
 
             <!-- 2×2 Matrix -->
-            <div class="bg-white p-8 rounded-2xl shadow-xl">
-              <div class="relative w-full h-[28rem] border-2 border-gray-400">
+            <div class="dark-card p-8 rounded-2xl shadow-xl">
+              <div class="relative w-full h-[28rem] border-2 border-slate-500 rounded-lg">
 
-                <!-- Quadrant backgrounds -->
-                <div class="absolute top-0  left-0  w-1/2 h-1/2 bg-yellow-50"></div><!-- Visionaries -->
-                <div class="absolute top-0  right-0 w-1/2 h-1/2 bg-blue-50"></div><!-- Sweet Spot -->
-                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-green-50"></div><!-- Access Leaders -->
-                <div class="absolute bottom-0 left-0  w-1/2 h-1/2 bg-gray-100"></div><!-- Low ROI -->
+                <!-- Quadrant backgrounds - Softer, more eye-friendly -->
+                <div class="absolute top-0  left-0  w-1/2 h-1/2 bg-amber-900/15"></div><!-- Visionaries -->
+                <div class="absolute top-0  right-0 w-1/2 h-1/2 bg-blue-900/15"></div><!-- Sweet Spot -->
+                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-emerald-900/15"></div><!-- Access Leaders -->
+                <div class="absolute bottom-0 left-0  w-1/2 h-1/2 bg-slate-700/30"></div><!-- Low ROI -->
 
-                <!-- Quadrant labels -->
-                <span class="absolute top-4    left-4  font-bold text-yellow-700">VISIONARIES</span>
-                <span class="absolute top-4    right-4 font-bold text-blue-700">SWEET&nbsp;SPOT</span>
-                <span class="absolute bottom-4 right-4 font-bold text-green-700">ACCESS&nbsp;LEADERS</span>
-                <span class="absolute bottom-4 left-4  font-bold text-gray-600">LOW&nbsp;ROI</span>
+                <!-- Quadrant labels - Better contrast -->
+                <span class="absolute top-4    left-4  font-bold text-amber-300 text-sm">VISIONARIES</span>
+                <span class="absolute top-4    right-4 font-bold text-blue-300 text-sm">SWEET&nbsp;SPOT</span>
+                <span class="absolute bottom-4 right-4 font-bold text-emerald-300 text-sm">ACCESS&nbsp;LEADERS</span>
+                <span class="absolute bottom-4 left-4  font-bold text-slate-300 text-sm">LOW&nbsp;ROI</span>
 
-                <!-- Axes -->
-                <div class="absolute bottom-0 left-0 w-full border-b-2 border-gray-600"></div>
-                <div class="absolute bottom-0 left-0 h-full border-l-2 border-gray-600"></div>
-                <div class="absolute bottom-1/2 left-0 w-full border-t border-gray-300"></div>
-                <div class="absolute bottom-0   left-1/2 h-full border-l border-gray-300"></div>
+                <!-- Axes - Softer lines -->
+                <div class="absolute bottom-0 left-0 w-full border-b-2 border-slate-400"></div>
+                <div class="absolute bottom-0 left-0 h-full border-l-2 border-slate-400"></div>
+                <div class="absolute bottom-1/2 left-0 w-full border-t border-slate-500"></div>
+                <div class="absolute bottom-0   left-1/2 h-full border-l border-slate-500"></div>
 
-                <!-- Axis labels -->
-                <span class="absolute -bottom-6 left-0  text-base font-bold">Low&nbsp;Accessibility</span>
-                <span class="absolute -bottom-6 right-0 text-base font-bold">High&nbsp;Accessibility</span>
-                <span class="absolute -left-16 top-[15%] text-base font-bold transform -rotate-90 origin-center">High&nbsp;Growth</span>
-                <span class="absolute -left-16 bottom-[15%] text-base font-bold transform -rotate-90 origin-center">Low&nbsp;Growth</span>
+                <!-- Axis labels - Better readability -->
+                <span class="absolute -bottom-6 left-0  text-sm font-bold text-slate-200">Low&nbsp;Accessibility</span>
+                <span class="absolute -bottom-6 right-0 text-sm font-bold text-slate-200">High&nbsp;Accessibility</span>
+                <span class="absolute -left-16 top-[15%] text-sm font-bold text-slate-200 transform -rotate-90 origin-center">High&nbsp;Growth</span>
+                <span class="absolute -left-16 bottom-[15%] text-sm font-bold text-slate-200 transform -rotate-90 origin-center">Low&nbsp;Growth</span>
 
                 <!-- ============ COMPANY DOTS ============ -->
                 <!-- Visionaries -->
                 <div class="absolute flex flex-col items-center" style="top:12%; left:18%;">
-                  <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-amber-400 transition-colors">
                     <img src="assets/images/logos/celonis-logo.png" alt="Celonis" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Celonis</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Celonis</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="top:22%; left:30%;">
-                  <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-amber-400 transition-colors">
                     <img src="assets/images/logos/uipath-logo.png" alt="UiPath" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">UiPath</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">UiPath</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="top:18%; left:7%;">
-                  <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-14 h-14 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-amber-400 transition-colors">
                     <img src="assets/images/logos/openai-logo.png" alt="OpenAI" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">GPT Pipes</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">GPT</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="top:28%; left:12%;">
-                  <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-14 h-14 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-amber-400 transition-colors">
                     <img src="assets/images/logos/sap-logo.png" alt="SAP" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">SAP / SN</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">SAP / SN</span>
                 </div>
 
-                <!-- Sweet Spot – NablaX -->
-                <div class="absolute flex flex-col items-center" style="top:14%; right:14%;">
-                  <div class="w-24 h-24 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full border-4 border-blue-300 shadow-2xl flex items-center justify-center animate-pulse relative">
-                    <div class="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20"></div>
-                    <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX" class="w-16 h-16 rounded-full relative z-10">
-                    <div class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full border-2 border-white flex items-center justify-center">
-                      <span class="text-xs font-bold text-yellow-900">★</span>
+                <!-- Sweet Spot – NablaX - MODERATELY BIGGER AND HIGHER -->
+                <div class="absolute flex flex-col items-center" style="top:10%; right:13%;">
+                  <div class="w-28 h-28 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full border-4 border-blue-300 shadow-2xl flex items-center justify-center animate-pulse relative">
+                    <div class="absolute inset-0 bg-blue-300 rounded-full animate-ping opacity-20"></div>
+                    <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX" class="w-18 h-18 rounded-full relative z-10">
+                    <div class="absolute -top-2 -right-2 w-7 h-7 bg-yellow-300 rounded-full border-2 border-white flex items-center justify-center">
+                      <span class="text-xs font-bold text-yellow-800">★</span>
                     </div>
                   </div>
-                  <span class="text-sm mt-2 font-bold text-blue-800">NablaX AI</span>
+                  <span class="text-sm mt-2 font-bold text-blue-300">NablaX AI</span>
                 </div>
 
                 <!-- Access Leaders -->
                 <div class="absolute flex flex-col items-center" style="bottom:40%; right:15%;">
-                  <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-emerald-400 transition-colors">
                     <img src="assets/images/logos/microsoft-logo.png" alt="Microsoft" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Power Automate</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Power Automate</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="bottom:15%; right:12%;">
-                  <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-16 h-16 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-emerald-400 transition-colors">
                     <img src="assets/images/logos/automation-anywhere-logo.png" alt="Automation Anywhere" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Auto Any.</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Auto Any.</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="bottom:25%; right:5%;">
-                  <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-14 h-14 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-emerald-400 transition-colors">
                     <img src="assets/images/logos/gupshup-logo.png" alt="Gupshup" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Gupshup</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Gupshup</span>
                 </div>
-                <div class="absolute flex flex-col items-center" style="bottom:20%; right:30%;">
-                  <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                <div class="absolute flex flex-col items-center" style="bottom:15%; right:30%;">
+                  <div class="w-14 h-14 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-emerald-400 transition-colors">
                     <img src="assets/images/logos/conversica-logo.png" alt="Conversica" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Conversica</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Conversica</span>
                 </div>
                 <div class="absolute flex flex-col items-center" style="bottom:35%; right:30%;">
-                  <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center border-2 shadow-md p-2">
+                  <div class="w-14 h-14 bg-slate-600 rounded-full flex items-center justify-center border-2 border-slate-400 shadow-md p-2 hover:border-emerald-400 transition-colors">
                     <img src="assets/images/logos/moveworks-logo.png" alt="Moveworks" class="w-full h-full rounded-full object-contain">
                   </div>
-                  <span class="text-xs mt-1 font-medium">Moveworks</span>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Moveworks</span>
                 </div>
 
                 <!-- Low ROI -->
                 <div class="absolute flex flex-col items-center" style="bottom:18%; left:18%;">
-                  <div class="w-14 h-14 bg-gray-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 shadow-md">ERP</div>
-                  <span class="text-xs mt-1 font-medium">Legacy ERP</span>
+                  <div class="w-14 h-14 bg-slate-500 rounded-full flex items-center justify-center text-slate-200 text-xs font-bold border-2 border-slate-400 shadow-md">ERP</div>
+                  <span class="text-xs mt-1 font-medium text-slate-200">Legacy ERP</span>
                 </div>
               </div>
               
               <!-- Details Button -->
-              <div class="mt-4 text-center">
-                <button id="competitive-details-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-300 shadow-md text-sm">
+              <div class="mt-6 text-center">
+                <button id="competitive-details-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300 shadow-md">
                   View Details →
                 </button>
               </div>
             </div>
 
-            <!-- Key Message -->
-            <div class="mt-8 bg-blue-600 text-white p-6 rounded-xl">
-              <h3 class="text-2xl font-bold mb-2">🎯 High-Growth Sweet Spot</h3>
-              <p class="text-lg">With 45%+ category growth and &lt; 14-day onboarding, <strong>NablaX AI</strong> captures the fastest lane to SME automation budgets—well ahead of slower enterprise and platform incumbents.</p>
+            <!-- Key Message - Softer gradient -->
+            <div class="mt-8 bg-gradient-to-r from-blue-500/60 to-purple-500/60 backdrop-blur-sm text-white p-8 rounded-xl border border-blue-400/30">
+              <h3 class="text-2xl font-bold mb-3">🎯 High-Growth Sweet Spot</h3>
+              <p class="text-lg description">With 45%+ category growth and &lt; 14-day onboarding, <strong>NablaX AI</strong> captures the fastest lane to SME automation budgets—well ahead of slower enterprise and platform incumbents.</p>
             </div>
 
             <!-- Quick Stats -->
-            <div class="grid md:grid-cols-3 gap-6 mt-6">
-              <div class="bg-white p-4 rounded-lg shadow">
-                <div class="text-2xl font-bold text-blue-600">85%</div>
-                <div class="text-sm text-gray-600">SME share within served niche</div>
+            <div class="grid md:grid-cols-3 gap-6 mt-8">
+              <div class="dark-card p-6 rounded-lg shadow text-center">
+                <div class="text-3xl font-bold text-blue-300">85%</div>
+                <div class="text-sm text-slate-300 description">SME share within served niche</div>
               </div>
-              <div class="bg-white p-4 rounded-lg shadow">
-                <div class="text-2xl font-bold text-green-600">3×</div>
-                <div class="text-sm text-gray-600">Higher gross margin vs. RPA peers</div>
+              <div class="dark-card p-6 rounded-lg shadow text-center">
+                <div class="text-3xl font-bold text-emerald-300">3×</div>
+                <div class="text-sm text-slate-300 description">Higher gross margin vs. RPA peers</div>
               </div>
-              <div class="bg-white p-4 rounded-lg shadow">
-                <div class="text-2xl font-bold text-purple-600">14 days</div>
-                <div class="text-sm text-gray-600">Pilot-to-value onboarding</div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Competitive Analysis Modal -->
-          <div id="competitive-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-              <div class="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-                  <div class="p-8">
-                      <div class="flex justify-between items-center mb-6">
-                          <h3 class="text-3xl font-bold text-blue-600">Why NablaX AI Wins</h3>
-                          <button id="close-competitive-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-                      </div>
-                      
-                      <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-red-50 p-6 rounded-xl border-2 border-red-200">
-                              <h4 class="font-bold text-xl mb-4 text-red-800">ERP Systems</h4>
-                              <p class="text-sm text-gray-600 mb-3">SAP, Oracle, Microsoft</p>
-                        <div class="text-left space-y-2 text-sm">
-                            <div>❌ $millions & months to implement</div>
-                            <div>❌ Requires dedicated IT staff</div>
-                            <div>❌ Tool only - SME still does the work</div>
-                        </div>
-                    </div>
-                    <div class="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200">
-                              <h4 class="font-bold text-xl mb-4 text-yellow-800">Process Mining</h4>
-                              <p class="text-sm text-gray-600 mb-3">Celonis, UiPath</p>
-                        <div class="text-left space-y-2 text-sm">
-                            <div>❌ Diagnoses problems, doesn't solve them</div>
-                            <div>❌ Requires existing digital processes</div>
-                            <div>❌ Expert consultant required</div>
-                        </div>
-                    </div>
-                    <div class="bg-orange-50 p-6 rounded-xl border-2 border-orange-200">
-                              <h4 class="font-bold text-xl mb-4 text-orange-800">Traditional Consulting</h4>
-                              <p class="text-sm text-gray-600 mb-3">McKinsey, BCG, Deloitte</p>
-                        <div class="text-left space-y-2 text-sm">
-                            <div>❌ Expensive & time-limited</div>
-                            <div>❌ Delivers reports, not execution</div>
-                            <div>❌ SMEs can't afford top firms</div>
-                        </div>
-                    </div>
-                </div>
-
-                      <div class="bg-green-50 p-8 rounded-2xl border-2 border-green-200">
-                          <h4 class="text-2xl font-bold text-green-800 mb-4">✅ NablaX AI Advantage</h4>
-                          <div class="grid md:grid-cols-2 gap-6 text-left">
-                              <div class="space-y-3">
-                                  <div>🚀 <strong>Ready in days, not months</strong> - Industry templates</div>
-                                  <div>🤖 <strong>AI does the work</strong> - Not just software, but service</div>
-                                  <div>💰 <strong>Fraction of consulting cost</strong> - Subscription model</div>
-                              </div>
-                              <div class="space-y-3">
-                                  <div>🔄 <strong>Continuous improvement</strong> - Always-on optimization</div>
-                                  <div>📊 <strong>Network effects</strong> - Best practices across clients</div>
-                                  <div>🎯 <strong>SME-first design</strong> - Consumer-grade interface</div>
-                              </div>
-                          </div>
-                      </div>
+              <div class="dark-card p-6 rounded-lg shadow text-center">
+                <div class="text-3xl font-bold text-purple-300">14 days</div>
+                <div class="text-sm text-slate-300 description">Pilot-to-value onboarding</div>
                   </div>
               </div>
           </div>
         </section>
 
-        <!-- Slide 7: Business Model & Pricing -->
-        <section id="slide-7" class="slide">
-            <div class="slide-number">7</div>
+        <!-- Slide 8: Business Model & Pricing -->
+        <section id="slide-8" class="slide">
+            <div class="slide-number">8</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-6xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8">Business Model & Pricing</h2>
-                <p class="text-lg text-gray-600 mb-12">Subscription-based AI-as-a-Service for SMEs</p>
+            <div class="max-w-6xl mx-auto text-center relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8 text-slate-100">Business Model & Pricing</h2>
+                <p class="text-xl text-slate-300 mb-12 subtitle">Subscription-based AI-as-a-Service for SMEs</p>
                 
-                <div class="bg-blue-50 p-8 rounded-2xl border-2 border-blue-200 mb-12">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-4">✅ NablaX AI Value Proposition</h3>
-                    <div class="grid md:grid-cols-2 gap-6 text-left">
-                        <div class="space-y-2">
-                            <div>🚀 <strong>Ready in days, not months</strong> - Industry templates</div>
-                            <div>🤖 <strong>AI does the work</strong> - Not just software, but service</div>
-                            <div>💰 <strong>Fraction of consulting cost</strong> - Subscription model</div>
+                <div class="dark-card p-8 rounded-2xl border-2 border-emerald-500/30 mb-12">
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-6">✅ NablaX AI Value Proposition</h3>
+                    <div class="grid md:grid-cols-2 gap-8 text-left">
+                        <div class="space-y-3 text-lg">
+                            <div class="text-slate-300">🚀 <strong class="text-slate-100">Ready in days, not months</strong> - Industry templates</div>
+                            <div class="text-slate-300">🤖 <strong class="text-slate-100">AI does the work</strong> - Not just software, but service</div>
+                            <div class="text-slate-300">💰 <strong class="text-slate-100">Fraction of consulting cost</strong> - Subscription model</div>
                         </div>
-                        <div class="space-y-2">
-                            <div>🔄 <strong>Continuous improvement</strong> - Always-on optimization</div>
-                            <div>📊 <strong>Network effects</strong> - Best practices across clients</div>
-                            <div>🎯 <strong>SME-first design</strong> - Consumer-grade interface</div>
+                        <div class="space-y-3 text-lg">
+                            <div class="text-slate-300">🔄 <strong class="text-slate-100">Continuous improvement</strong> - Always-on optimization</div>
+                            <div class="text-slate-300">📊 <strong class="text-slate-100">Network effects</strong> - Best practices across clients</div>
+                            <div class="text-slate-300">🎯 <strong class="text-slate-100">SME-first design</strong> - Consumer-grade interface</div>
                         </div>
                     </div>
                 </div>
 
                 <div id="pricing-tiers" class="grid md:grid-cols-3 gap-8">
                     <!-- Tier 1 -->
-                    <div class="pricing-tier border-2 border-gray-200 bg-white p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-transform">
-                        <h3 class="text-2xl font-bold">Starter</h3>
-                        <p class="text-gray-500 mb-6">5-25 employees</p>
-                        <p class="text-4xl font-bold mb-6">$29<span class="text-lg font-normal"> /employee/month</span></p>
-                        <ul class="text-left space-y-2"><li>✓ Basic admin automation</li><li>✓ Email & calendar integration</li><li>✓ Standard industry templates</li><li>✓ Email support</li></ul>
+                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-all hover:border-blue-500">
+                        <h3 class="text-2xl font-bold text-slate-100">Starter</h3>
+                        <p class="text-slate-400 mb-6 description">5-25 employees</p>
+                        <p class="text-4xl font-bold mb-6 text-slate-100">$29<span class="text-lg font-normal text-slate-400"> /employee/month</span></p>
+                        <ul class="text-left space-y-3 text-slate-300">
+                            <li>✓ Basic admin automation</li>
+                            <li>✓ Email & calendar integration</li>
+                            <li>✓ Standard industry templates</li>
+                            <li>✓ Email support</li>
+                        </ul>
                     </div>
                     <!-- Tier 2 -->
-                    <div class="pricing-tier border-2 border-blue-600 bg-blue-50 p-8 rounded-2xl shadow-2xl relative transform scale-105 cursor-pointer">
+                    <div class="pricing-tier dark-card border-2 border-blue-500 p-8 rounded-2xl shadow-2xl relative transform scale-105 cursor-pointer bg-blue-900/20">
                         <span class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
-                        <h3 class="text-2xl font-bold text-blue-800">Professional</h3>
-                        <p class="text-gray-500 mb-6">25-100 employees</p>
-                        <p class="text-4xl font-bold text-blue-800 mb-6">$50<span class="text-lg font-normal"> /employee/month</span></p>
-                        <ul class="text-left space-y-2"><li>✓ Full AI agent capabilities</li><li>✓ Custom workflow automation</li><li>✓ Advanced analytics & insights</li><li>✓ Priority support</li></ul>
+                        <h3 class="text-2xl font-bold text-blue-400">Professional</h3>
+                        <p class="text-slate-400 mb-6 description">25-100 employees</p>
+                        <p class="text-4xl font-bold text-blue-400 mb-6">$50<span class="text-lg font-normal text-slate-400"> /employee/month</span></p>
+                        <ul class="text-left space-y-3 text-slate-300">
+                            <li>✓ Full AI agent capabilities</li>
+                            <li>✓ Custom workflow automation</li>
+                            <li>✓ Advanced analytics & insights</li>
+                            <li>✓ Priority support</li>
+                        </ul>
                     </div>
                     <!-- Tier 3 -->
-                    <div class="pricing-tier border-2 border-gray-200 bg-white p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-transform">
-                        <h3 class="text-2xl font-bold">Enterprise</h3>
-                        <p class="text-gray-500 mb-6">100+ employees</p>
-                        <p class="text-4xl font-bold mb-6">Custom</p>
-                        <ul class="text-left space-y-2"><li>✓ White-label deployment</li><li>✓ Custom integrations</li><li>✓ Dedicated success manager</li><li>✓ SLA guarantees</li></ul>
+                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-all hover:border-purple-500">
+                        <h3 class="text-2xl font-bold text-slate-100">Enterprise</h3>
+                        <p class="text-slate-400 mb-6 description">100+ employees</p>
+                        <p class="text-4xl font-bold mb-6 text-slate-100">Custom</p>
+                        <ul class="text-left space-y-3 text-slate-300">
+                            <li>✓ White-label deployment</li>
+                            <li>✓ Custom integrations</li>
+                            <li>✓ Dedicated success manager</li>
+                            <li>✓ SLA guarantees</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 8: Platform Architecture -->
-        <section id="slide-8" class="slide bg-white">
-            <div class="slide-number">8</div>
+        <!-- Slide 9: Platform Architecture -->
+        <section id="slide-9" class="slide bg-white">
+            <div class="slide-number">9</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
             <div class="max-w-6xl mx-auto p-8">
                 
@@ -916,116 +1089,85 @@
             </div>
         </section>
 
-        <!-- Slide 9: Proven Case Studies -->
-        <section id="slide-9" class="slide bg-gray-100">
-            <div class="slide-number">9</div>
-            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-12">Proven Results: Real Case Studies</h2>
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                        <h3 class="font-bold text-xl mb-4 text-blue-800">Fashion E-Commerce SME</h3>
-                        <p class="text-gray-600 mb-4">AI customer service chatbot handled FAQs and order inquiries</p>
-                        <div class="space-y-2">
-                            <div class="flex justify-between"><span>Service calls reduced:</span><strong class="text-green-600">40%</strong></div>
-                            <div class="flex justify-between"><span>Customer satisfaction:</span><strong class="text-green-600">+25%</strong></div>
-                            <div class="flex justify-between"><span>24/7 availability:</span><strong class="text-green-600">✓</strong></div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                        <h3 class="font-bold text-xl mb-4 text-purple-800">Logistics SMB</h3>
-                        <p class="text-gray-600 mb-4">AI optimized inventory and supply chain management</p>
-                        <div class="space-y-2">
-                            <div class="flex justify-between"><span>Excess inventory:</span><strong class="text-green-600">-30%</strong></div>
-                            <div class="flex justify-between"><span>Storage costs:</span><strong class="text-green-600">-20%</strong></div>
-                            <div class="flex justify-between"><span>Stock-outs:</span><strong class="text-green-600">Eliminated</strong></div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                        <h3 class="font-bold text-xl mb-4 text-orange-800">Professional Services Firm</h3>
-                        <p class="text-gray-600 mb-4">AI meeting scheduling and documentation assistant</p>
-                        <div class="space-y-2">
-                            <div class="flex justify-between"><span>Admin time saved:</span><strong class="text-green-600">50%</strong></div>
-                            <div class="flex justify-between"><span>Meeting efficiency:</span><strong class="text-green-600">+40%</strong></div>
-                            <div class="flex justify-between"><span>Team satisfaction:</span><strong class="text-green-600">Higher</strong></div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-left">
-                        <h3 class="font-bold text-xl mb-4 text-red-800">Local Restaurant</h3>
-                        <p class="text-gray-600 mb-4">AI-powered loyalty program and predictive marketing</p>
-                        <div class="space-y-2">
-                            <div class="flex justify-between"><span>Repeat visits:</span><strong class="text-green-600">+25%</strong></div>
-                            <div class="flex justify-between"><span>Customer retention:</span><strong class="text-green-600">Improved</strong></div>
-                            <div class="flex justify-between"><span>Personalized offers:</span><strong class="text-green-600">✓</strong></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Enterprise Validation</h3>
-                    <div class="text-lg">
-                        <p class="mb-4">IBM saved <strong class="text-blue-600">$160M</strong> using AI-based supply chain optimization</p>
-                        <p class="text-gray-600">SMEs can achieve proportional savings with the same principles - less complexity</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 10: Funding & Growth Strategy -->
+        <!-- Slide 10: Seed Funding -->
         <section id="slide-10" class="slide">
             <div class="slide-number">10</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8">Series A Funding</h2>
-                <p class="text-5xl md:text-7xl font-bold text-blue-700 mb-8">$5M</p>
-                <p class="text-lg md:text-xl text-gray-600 mb-12">18-month runway to capture European SME market</p>
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8 text-slate-100">Seed Funding</h2>
+                <p class="text-5xl md:text-7xl font-bold text-green-400 mb-4">$125K</p>
+                <p class="text-lg text-slate-400 mb-12">Initial funding to build fully marketable MVP and validate product-market fit</p>
                 
                 <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="font-bold text-xl mb-4 text-blue-800">Use of Funds</h3>
-                        <div class="w-full bg-gray-200 rounded-full h-8 mb-4">
+                    <div class="dark-card p-8 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-2xl mb-6 text-blue-400">Use of Funds</h3>
+                        <div class="w-full bg-slate-600 rounded-full h-10 mb-6">
                             <div class="flex h-full rounded-full overflow-hidden">
-                                <div class="bg-blue-800 text-xs font-medium text-blue-100 text-center p-2 leading-none" style="width: 45%">Product Dev (45%)</div>
-                                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-2 leading-none" style="width: 35%">Sales & Marketing (35%)</div>
-                                <div class="bg-blue-400 text-xs font-medium text-blue-100 text-center p-2 leading-none" style="width: 20%">Operations (20%)</div>
+                                <div class="bg-blue-600 text-xs font-medium text-white text-center p-2 leading-none flex items-center justify-center" style="width: 50%">MVP Development (50%)</div>
+                                <div class="bg-green-500 text-xs font-medium text-white text-center p-2 leading-none flex items-center justify-center" style="width: 30%">Market Validation (30%)</div>
+                                <div class="bg-purple-500 text-xs font-medium text-white text-center p-2 leading-none flex items-center justify-center" style="width: 20%">Operations (20%)</div>
                             </div>
                         </div>
-                        <div class="text-left space-y-2 text-sm">
-                            <div>• AI agent development & industry templates</div>
-                            <div>• European market expansion</div>
-                            <div>• Customer success & support team</div>
+                        <div class="text-left space-y-3 text-lg">
+                            <div class="text-slate-300">• Core AI agent platform development</div>
+                            <div class="text-slate-300">• Initial customer acquisition & testing</div>
+                            <div class="text-slate-300">• Legal, compliance & basic operations</div>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="font-bold text-xl mb-4 text-green-800">18-Month Targets</h3>
-                        <div class="text-left space-y-3">
-                            <div class="flex justify-between"><span>SME customers:</span><strong>500+</strong></div>
-                            <div class="flex justify-between"><span>ARR:</span><strong>$3M+</strong></div>
-                            <div class="flex justify-between"><span>Countries:</span><strong>5 EU markets</strong></div>
-                            <div class="flex justify-between"><span>Industry templates:</span><strong>15+</strong></div>
-                            <div class="flex justify-between"><span>Team size:</span><strong>25 people</strong></div>
+                    <div class="dark-card p-8 rounded-xl shadow-lg">
+                        <h3 class="font-bold text-2xl mb-6 text-emerald-400">6-12 Month Milestones</h3>
+                        <div class="text-left space-y-4 text-lg">
+                            <div class="flex justify-between"><span class="text-slate-300">MVP Launch:</span><strong class="text-slate-100">Month 3</strong></div>
+                            <div class="flex justify-between"><span class="text-slate-300">Pilot customers:</span><strong class="text-slate-100">10 SMEs</strong></div>
+                            <div class="flex justify-between"><span class="text-slate-300">Product-Market Fit:</span><strong class="text-slate-100">Validated</strong></div>
+                            <div class="flex justify-between"><span class="text-slate-300">Monthly Revenue:</span><strong class="text-slate-100">$15K+</strong></div>
+                            <div class="flex justify-between"><span class="text-slate-300">Team size:</span><strong class="text-slate-100">4-5 people</strong></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-blue-50 p-6 rounded-xl">
-                    <h3 class="font-bold text-xl mb-4 text-blue-800">Go-to-Market Strategy</h3>
-                    <div class="grid md:grid-cols-3 gap-4 text-left">
-                        <div>
-                            <h4 class="font-semibold text-blue-700">Phase 1: UK & Germany</h4>
-                            <p class="text-sm text-gray-600">High AI adoption, English-friendly</p>
+                <!-- Timeline -->
+                <div class="dark-card p-8 rounded-xl border-2 border-purple-500/30">
+                    <h3 class="font-bold text-2xl mb-6 text-purple-400">Execution Timeline</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-left">
+                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-400">
+                            <h4 class="font-semibold text-lg text-blue-400 mb-2">Months 1-3: Build</h4>
+                            <ul class="text-slate-300 text-sm space-y-1">
+                                <li>• MVP development</li>
+                                <li>• Core team hiring</li>
+                                <li>• Initial partnerships</li>
+                            </ul>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700">Phase 2: France & Netherlands</h4>
-                            <p class="text-sm text-gray-600">Government digitalization support</p>
+                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-green-400">
+                            <h4 class="font-semibold text-lg text-green-400 mb-2">Months 4-6: Validate</h4>
+                            <ul class="text-slate-300 text-sm space-y-1">
+                                <li>• Pilot customer onboarding</li>
+                                <li>• Product iteration</li>
+                                <li>• Market feedback integration</li>
+                            </ul>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-blue-700">Phase 3: Southern Europe</h4>
-                            <p class="text-sm text-gray-600">Untapped market, high growth potential</p>
+                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-purple-400">
+                            <h4 class="font-semibold text-lg text-purple-400 mb-2">Months 7-12: Scale</h4>
+                            <ul class="text-slate-300 text-sm space-y-1">
+                                <li>• Revenue growth</li>
+                                <li>• Series A preparation</li>
+                                <li>• Market expansion</li>
+                            </ul>
                         </div>
-              </div>
+                    </div>
+                </div>
+
+                <!-- Next Round Preparation -->
+                <div class="mt-8 bg-gradient-to-r from-green-500/60 to-blue-500/60 backdrop-blur-sm text-white p-6 rounded-xl border border-green-400/30">
+                    <h4 class="text-xl font-bold mb-2">🎯 Series A Ready</h4>
+                    <p class="text-lg">With proven traction and validated business model, positioned for $2-5M Series A by Month 12</p>
+                </div>
+
+                <!-- Citation for funding amount -->
+                <div class="absolute bottom-2 right-2 text-xs text-slate-500">
+                    <div class="text-slate-400">*$125K based on typical seed funding amounts for B2B SaaS startups</div>
+                </div>
             </div>
-          </div>
         </section>
         
         <!-- Slide 11: Contact -->
@@ -1033,30 +1175,75 @@
             <div class="slide-number white">11</div>
             <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-corner">
             <div class="text-center">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Transform SMEs?</h2>
-                <p class="text-xl md:text-2xl text-blue-200 mb-8">Join us in empowering 400M+ businesses worldwide</p>
-                
-                <div class="bg-blue-800 bg-opacity-50 p-8 rounded-2xl inline-block">
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-lg font-semibold">Yongli Mou | CEO & Founder</p>
+                <!-- Main CTA -->
+                <div class="max-w-4xl mx-auto mb-16">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                        Choose NablaX, Make AI the<br><span class="gradient-text">Core Engine</span> of Your Growth
+                    </h2>
+                    <p class="text-xl md:text-2xl text-blue-200 mb-12">
+                        Contact us now for a free enterprise AI assessment and customized solution
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-4 px-12 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-105">
+                            Schedule Demo Now
+                        </button>
+                        <button class="border-2 border-blue-300 text-blue-300 font-semibold py-4 px-12 rounded-lg hover:bg-blue-300 hover:text-blue-900 transition-all">
+                            Download Whitepaper
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Founders & Contact Section -->
+                <div class="bg-blue-800/50 p-8 rounded-2xl">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Founders -->
+                        <div class="text-center">
+                            <h4 class="font-semibold mb-6 text-blue-200 text-xl">Meet the Founders</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-lg font-semibold text-white">Yongli Mou</p>
+                                    <p class="text-blue-300">CEO & Founder</p>
+                                </div>
+                                <div>
+                                    <p class="text-lg font-semibold text-white">Er Jin</p>
+                                    <p class="text-blue-300">CTO & Founder</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-lg font-semibold">Er Jin | CTO & Founder</p>
+                        
+                        <!-- Contact & Company Info -->
+                        <div class="text-center">
+                            <h4 class="font-semibold mb-6 text-blue-200 text-xl">Contact Us</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-blue-300">📧 hello@nablax.ai</p>
+                                </div>
+                                <div class="mt-6">
+                                    <h3 class="text-xl font-bold gradient-text mb-2">NablaX</h3>
+                                    <p class="text-blue-200 text-sm">Revolutionary platform that reduces enterprise AI implementation from 6 months to 6 hours</p>
+                                </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
+                    
+                    <!-- Copyright -->
+                    <div class="mt-8 pt-6 border-t border-blue-700/50 text-center">
+                        <p class="text-xs text-blue-400">&copy; 2025 NablaX. All Rights Reserved.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 导航 -->
+    <!-- Navigation -->
     <div id="progress-dots" class="progress-dots"></div>
     <div class="nav-buttons">
         <button id="prev-btn" class="nav-button">Previous</button>
         <button id="next-btn" class="nav-button">Next</button>
     </div>
 
+    <!-- Continue with existing JavaScript... -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
@@ -1163,7 +1350,7 @@
                 
                 // Calculate hours saved per week (36% of total work hours)
                 const adminHoursPerEmployeePerWeek = hoursPerWeek * adminTimePercentage;
-                const totalAdminHoursSavedPerWeek = employees * adminHoursPerEmployeePerWeek;
+                const totalAdminHoursSavedPerWeek = employees * adminHoursPerEmployeeWeek;
                 
                 // Calculate annual cost savings
                 const totalHoursSavedPerYear = totalAdminHoursSavedPerWeek * weeksPerYear;
@@ -1397,6 +1584,136 @@
             }
 
         });
+
+        // ROI Calculator Functions
+        function calculateROI() {
+            const employees = parseInt(document.getElementById('employees').value);
+            const salary = parseInt(document.getElementById('salary').value);
+            const productivityLoss = parseInt(document.getElementById('productivity-loss').value);
+            
+            // Calculate current productivity costs
+            const totalLaborCost = employees * salary;
+            const productivityLossAmount = totalLaborCost * (productivityLoss / 100);
+            
+            // NablaX improvements (conservative estimates)
+            const productivityImprovement = 0.20; // 20% improvement
+            const annualSavings = productivityLossAmount * productivityImprovement;
+            
+            // Investment calculation (typical NablaX pricing)
+            const nablaXInvestment = employees * 2000; // €2000 per employee setup
+            const roi = ((annualSavings - nablaXInvestment) / nablaXInvestment) * 100;
+            const paybackMonths = Math.ceil(nablaXInvestment / (annualSavings / 12));
+            
+            // Update display
+            document.getElementById('annual-savings').textContent = '€' + annualSavings.toLocaleString();
+            document.getElementById('roi-percentage').textContent = Math.round(roi) + '%';
+            document.getElementById('payback-period').textContent = paybackMonths + ' months';
+            
+            // Animate progress bars
+            setTimeout(() => {
+                // Savings bar (scale to max €500k)
+                const savingsPercent = Math.min((annualSavings / 500000) * 100, 100);
+                document.getElementById('savings-bar').style.width = savingsPercent + '%';
+                
+                // ROI bar (scale to max 300%)
+                const roiPercent = Math.min((roi / 300) * 100, 100);
+                document.getElementById('roi-bar').style.width = Math.max(roiPercent, 0) + '%';
+                
+                // Payback bar (inverse scale - shorter is better, max 24 months)
+                const paybackPercent = Math.max(100 - ((paybackMonths / 24) * 100), 10);
+                document.getElementById('payback-bar').style.width = paybackPercent + '%';
+            }, 100);
+        }
+
+        // Update productivity display
+        document.getElementById('productivity-loss').addEventListener('input', function() {
+            document.getElementById('productivity-display').textContent = this.value;
+        });
+
+        // Calculate initial ROI on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateROI();
+        });
+
+        // German ROI Calculator with updated logic - 50% reduced savings AND 50% reduced cost
+        function updateGermanROI() {
+            const employees = parseInt(document.getElementById('employee-slider').value);
+            const avgSalary = 55000; // German average salary
+            const productivityLossRecovery = 0.125; // 12.5% productivity improvement (reduced from 25%)
+            const costPerEmployeePerYear = 1000; // REDUCED from 2000 to 1000 (50% reduction)
+            
+            // Calculations
+            const totalLaborCost = employees * avgSalary;
+            const hoursPerWeek = employees * 40; // 40 hour work week
+            const hoursSaved = Math.round(hoursPerWeek * productivityLossRecovery);
+            const annualSavings = Math.round(totalLaborCost * productivityLossRecovery);
+            const platformCost = employees * costPerEmployeePerYear;
+            const roiMultiplier = (annualSavings / platformCost).toFixed(1);
+            const netSavings = annualSavings - platformCost;
+            
+            // Update display
+            document.getElementById('employee-count').textContent = employees;
+            document.getElementById('hours-saved').textContent = hoursSaved.toLocaleString();
+            document.getElementById('cost-saved').textContent = annualSavings.toLocaleString();
+            document.getElementById('platform-cost').textContent = platformCost.toLocaleString();
+            document.getElementById('roi-multiplier').textContent = roiMultiplier + 'x';
+            document.getElementById('net-savings').textContent = netSavings.toLocaleString();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateGermanROI(); // Calculate initial values
+        });
+
+        // Slide 6 Sources functionality with hover tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            const slide6SourcesBtn = document.getElementById('slide6-sources-btn');
+            const slide6SourcesDropdown = document.getElementById('slide6-sources-dropdown');
+            const sourceTooltip = document.getElementById('source-tooltip');
+            const tooltipContent = document.getElementById('tooltip-content');
+            const hoverSources = document.querySelectorAll('.hover-source');
+
+            // Sources button functionality
+            if (slide6SourcesBtn && slide6SourcesDropdown) {
+                slide6SourcesBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    slide6SourcesDropdown.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', function() {
+                    if (!slide6SourcesDropdown.classList.contains('hidden')) {
+                        slide6SourcesDropdown.classList.add('hidden');
+                    }
+                });
+
+                slide6SourcesDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            // Hover tooltip functionality
+            hoverSources.forEach(element => {
+                element.addEventListener('mouseenter', function(e) {
+                    const source = this.getAttribute('data-source');
+                    if (source && tooltipContent && sourceTooltip) {
+                        tooltipContent.textContent = source;
+                        sourceTooltip.classList.remove('hidden');
+                        
+                        // Position tooltip near cursor
+                        const rect = this.getBoundingClientRect();
+                        sourceTooltip.style.left = (rect.left + 10) + 'px';
+                        sourceTooltip.style.top = (rect.top - 60) + 'px';
+                    }
+                });
+
+                element.addEventListener('mouseleave', function() {
+                    if (sourceTooltip) {
+                        sourceTooltip.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
     </script>
 </body>
 </html> 
