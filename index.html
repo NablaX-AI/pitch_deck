@@ -87,14 +87,14 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .dark-card:hover {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+            transform: translateY(-10px) scale(1.02);
         }
         
         /* Problem cards for dark theme */
@@ -104,11 +104,13 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
             border-left: 4px solid #ef4444;
             color: #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .problem-card-dark:hover {
             border-color: rgba(239, 68, 68, 0.5);
             box-shadow: 0 15px 30px rgba(239, 68, 68, 0.2);
+            transform: translateY(-10px) scale(1.02);
         }
         
         /* Solution cards for dark theme */
@@ -118,11 +120,13 @@
             border: 1px solid rgba(34, 197, 94, 0.3);
             border-left: 4px solid #22c55e;
             color: #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .solution-card-dark:hover {
             border-color: rgba(34, 197, 94, 0.5);
             box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+            transform: translateY(-10px) scale(1.02);
         }
         
         /* ROI Calculator dark theme */
@@ -249,9 +253,11 @@
         
         /* Value prop cards */
         .value-prop-card {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
         }
         
         .value-prop-card::before {
@@ -262,7 +268,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.8s ease;
         }
         
         .value-prop-card:hover::before {
@@ -270,11 +276,42 @@
         }
         
         .value-prop-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
-            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .value-prop-card .value-prop-icon-wrapper {
+            transition: all 0.4s ease;
+        }
+        .value-prop-card:hover .value-prop-icon-wrapper {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px -5px currentColor;
+        }
+
+        .value-prop-composable:hover {
+            border-color: #a78bfa; /* purple-400 */
+            box-shadow: 0 20px 40px -15px rgba(167, 139, 250, 0.25);
+        }
+        .value-prop-agile:hover {
+            border-color: #34d399; /* emerald-400 */
+            box-shadow: 0 20px 40px -15px rgba(52, 211, 153, 0.25);
+        }
+        .value-prop-intelligent:hover {
+            border-color: #818cf8; /* indigo-400 */
+            box-shadow: 0 20px 40px -15px rgba(129, 140, 248, 0.25);
+        }
+        .value-prop-roi:hover {
+            border-color: #fbbf24; /* amber-400 */
+            box-shadow: 0 20px 40px -15px rgba(251, 191, 36, 0.25);
         }
         
+        .timeline-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .timeline-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px -10px currentColor;
+        }
+
         /* Modal styles */
         .modal {
             display: none;
@@ -348,6 +385,111 @@
             background-color: rgba(51, 65, 85, 0.3);
             transform: translateY(-1px);
         }
+
+        /* Custom styles for the architecture diagram */
+        .architecture-container {
+            width: 100%;
+            max-width: 80rem; /* 1280px */
+            display: grid;
+            grid-template-columns: 3fr 1fr 1.5fr; /* New layout: Left Stack, Middle Pillar, Right Pillar */
+            grid-template-rows: auto 1fr; /* Users row, main content row */
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .layer {
+            grid-column: 1 / -1;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            backdrop-filter: blur(8px);
+        }
+        
+        .layer-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .left-stack {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .middle-pillar {
+            grid-row: 2 / 3;
+            grid-column: 2 / 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-pillar {
+            grid-row: 2 / 3;
+            grid-column: 3 / 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .component-card {
+            background: rgba(51, 65, 85, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: 100%;
+        }
+        .component-card:hover {
+            background: rgba(71, 85, 105, 0.9);
+            border-color: #818cf8;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(129, 140, 248, 0.15);
+        }
+        .component-card svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            color: #a78bfa;
+            margin-bottom: 0.25rem;
+        }
+
+        .arrow {
+            position: absolute;
+            background-color: rgba(148, 163, 184, 0.4);
+            z-index: -1;
+        }
+        .arrow.vertical { width: 2px; }
+        .arrow.horizontal { height: 2px; }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            border: solid rgba(148, 163, 184, 0.4);
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 4px;
+        }
+        .arrow.down::after { bottom: -8px; left: -4px; transform: rotate(45deg); }
+        .arrow.up::after { top: -8px; left: -4px; transform: rotate(-135deg); }
+        .arrow.left::after { left: -8px; top: -4px; transform: rotate(135deg); }
+        .arrow.right::after { right: -8px; top: -4px; transform: rotate(-45deg); }
     </style>
 </head>
 <body>
@@ -366,42 +508,46 @@
                         <span class="gradient-text-soft">NablaX AI</span>
                     </h1>
                     <p class="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto leading-relaxed subtitle">AI-Powered Business-as-a-Service Platform</p>
-                    <p class="text-lg md:text-xl text-slate-400 mb-12 description">Empowering 400M+ SMEs with intelligent automation</p>
+                    <p class="text-lg md:text-xl text-slate-400 mb-12 description">Missing digital transformation? Let NablaX empower your Intelligent Transformation</p>
                     
                     <!-- Key Value Props -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
-                            <div class="bg-indigo-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                                <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg mb-2 text-slate-200">AI-Powered</h3>
-                            <p class="text-sm text-slate-400 description">Intelligent automation replaces manual work</p>
-                        </div>
-                        
-                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
-                            <div class="bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                        <!-- Composable -->
+                        <div class="value-prop-card value-prop-composable border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="value-prop-icon-wrapper bg-purple-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto" style="color: #a78bfa;">
                                 <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                                 </svg>
                             </div>
                             <h3 class="font-semibold text-lg mb-2 text-slate-200">Composable</h3>
-                            <p class="text-sm text-slate-400 description">Modular solutions that adapt to your business</p>
+                            <p class="text-sm text-slate-400">Modular solutions tailored to your business</p>
                         </div>
-                        
-                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
-                            <div class="bg-emerald-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+
+                        <!-- Agile -->
+                        <div class="value-prop-card value-prop-agile border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="value-prop-icon-wrapper bg-emerald-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto" style="color: #34d399;">
                                 <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                 </svg>
                             </div>
-                            <h3 class="font-semibold text-lg mb-2 text-slate-200">Fast Deploy</h3>
-                            <p class="text-sm text-slate-400 description">Go live in days, not months</p>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">Agile</h3>
+                            <p class="text-sm text-slate-400">Rapid deployment and iterative innovation</p>
+                        </div>
+
+                        <!-- Intelligent -->
+                        <div class="value-prop-card value-prop-intelligent border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="value-prop-icon-wrapper bg-indigo-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto" style="color: #818cf8;">
+                                <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 text-slate-200">Intelligent</h3>
+                            <p class="text-sm text-slate-400">AI-driven automation replacing manual work</p>
                         </div>
                         
-                        <div class="value-prop-card bg-slate-700/60 backdrop-blur-sm border border-slate-600/30 p-6 rounded-2xl shadow-xl">
-                            <div class="bg-amber-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                        <!-- ROI Focused -->
+                        <div class="value-prop-card value-prop-roi border border-slate-600/30 p-6 rounded-2xl shadow-xl">
+                            <div class="value-prop-icon-wrapper bg-amber-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto" style="color: #fbbf24;">
                                 <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                                 </svg>
@@ -409,6 +555,7 @@
                             <h3 class="font-semibold text-lg mb-2 text-slate-200">ROI Focused</h3>
                             <p class="text-sm text-slate-400 description">Measurable business transformation</p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -896,7 +1043,13 @@
 
             <!-- Key Message - Softer gradient -->
             <div class="mt-8 bg-gradient-to-r from-blue-500/60 to-purple-500/60 backdrop-blur-sm text-white p-8 rounded-xl border border-blue-400/30">
-              <h3 class="text-2xl font-bold mb-3">🎯 High-Growth Sweet Spot</h3>
+              <h3 class="text-2xl font-bold mb-3 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                High-Growth Sweet Spot
+              </h3>
               <p class="text-lg description">With 45%+ category growth and &lt; 14-day onboarding, <strong>NablaX AI</strong> captures the fastest lane to SME automation budgets—well ahead of slower enterprise and platform incumbents.</p>
             </div>
 
@@ -927,24 +1080,61 @@
                 <p class="text-xl text-slate-300 mb-12 subtitle">Subscription-based AI-as-a-Service for SMEs</p>
                 
                 <div class="dark-card p-8 rounded-2xl border-2 border-emerald-500/30 mb-12">
-                    <h3 class="text-2xl font-bold text-emerald-400 mb-6">✅ NablaX AI Value Proposition</h3>
-                    <div class="grid md:grid-cols-2 gap-8 text-left">
-                        <div class="space-y-3 text-lg">
-                            <div class="text-slate-300">🚀 <strong class="text-slate-100">Ready in days, not months</strong> - Industry templates</div>
-                            <div class="text-slate-300">🤖 <strong class="text-slate-100">AI does the work</strong> - Not just software, but service</div>
-                            <div class="text-slate-300">💰 <strong class="text-slate-100">Fraction of consulting cost</strong> - Subscription model</div>
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-6 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      NablaX AI Value Proposition
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 text-left">
+                        
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a12.026 12.026 0 01-5.84 7.38m0-11.96a12.026 12.026 0 00-5.84-2.56m11.68 0a12.026 12.026 0 01-5.84 2.56M12 12a6 6 0 01-6-6h4.82m2.36 0a12.026 12.026 0 00-5.84-2.56m0 11.96a6 6 0 01-5.84-7.38m11.68 0a12.026 12.026 0 01-5.84-2.56" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">Ready in days, not months</strong> - Industry templates</span>
                         </div>
-                        <div class="space-y-3 text-lg">
-                            <div class="text-slate-300">🔄 <strong class="text-slate-100">Continuous improvement</strong> - Always-on optimization</div>
-                            <div class="text-slate-300">📊 <strong class="text-slate-100">Network effects</strong> - Best practices across clients</div>
-                            <div class="text-slate-300">🎯 <strong class="text-slate-100">SME-first design</strong> - Consumer-grade interface</div>
+                        
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">Continuous improvement</strong> - Always-on optimization</span>
+                        </div>
+
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H21M18.75 3v1.5M16.5 21h-9a2.25 2.25 0 01-2.25-2.25V7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v11.25A2.25 2.25 0 0116.5 21z" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">AI does the work</strong> - Not just software, but service</span>
+                        </div>
+
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">Network effects</strong> - Best practices across clients</span>
+                        </div>
+
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">Fraction of consulting cost</strong> - Subscription model</span>
+                        </div>
+
+                        <div class="flex items-start text-lg">
+                          <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 mr-4 mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          </div>
+                          <span class="text-slate-300"><strong class="text-slate-100">SME-first design</strong> - Consumer-grade interface</span>
                         </div>
                     </div>
                 </div>
 
                 <div id="pricing-tiers" class="grid md:grid-cols-3 gap-8">
                     <!-- Tier 1 -->
-                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-all hover:border-blue-500">
+                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer hover:border-blue-500">
                         <h3 class="text-2xl font-bold text-slate-100">Starter</h3>
                         <p class="text-slate-400 mb-6 description">5-25 employees</p>
                         <p class="text-4xl font-bold mb-6 text-slate-100">$29<span class="text-lg font-normal text-slate-400"> /employee/month</span></p>
@@ -956,7 +1146,7 @@
                         </ul>
                     </div>
                     <!-- Tier 2 -->
-                    <div class="pricing-tier dark-card border-2 border-blue-500 p-8 rounded-2xl shadow-2xl relative transform scale-105 cursor-pointer bg-blue-900/20">
+                    <div class="pricing-tier dark-card border-2 border-blue-500 p-8 rounded-2xl shadow-2xl relative scale-105 cursor-pointer bg-blue-900/20">
                         <span class="absolute top-0 -translate-y-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
                         <h3 class="text-2xl font-bold text-blue-400">Professional</h3>
                         <p class="text-slate-400 mb-6 description">25-100 employees</p>
@@ -969,7 +1159,7 @@
                         </ul>
                     </div>
                     <!-- Tier 3 -->
-                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer transform hover:scale-105 transition-all hover:border-purple-500">
+                    <div class="pricing-tier dark-card border-2 border-slate-600 p-8 rounded-2xl shadow-lg cursor-pointer hover:border-purple-500">
                         <h3 class="text-2xl font-bold text-slate-100">Enterprise</h3>
                         <p class="text-slate-400 mb-6 description">100+ employees</p>
                         <p class="text-4xl font-bold mb-6 text-slate-100">Custom</p>
@@ -985,110 +1175,117 @@
         </section>
 
         <!-- Slide 9: Platform Architecture -->
-        <section id="slide-9" class="slide bg-white">
-            <div class="slide-number">9</div>
-            <img src="assets/images/logos/nabla_x_logo_bg_transparent_new.png" alt="NablaX AI Logo" class="logo-header">
-            <div class="max-w-6xl mx-auto p-8">
-                
-                <!-- Outer frame -->
-                <div class="border-2 border-blue-300 rounded-2xl p-6">
-                    <!-- Title -->
-                    <h2 class="text-3xl md:text-5xl font-bold text-center mb-6">NablaX</h2>
+        <section id="slide-9" class="slide active">
+        <div class="slide-number">9</div>
+        <img src="https://nabla-public.s3.amazonaws.com/nabla_x_logo_bg_transparent_new.png" 
+             onerror="this.onerror=null; this.src='https://placehold.co/120x40/0f172a/e2e8f0?text=NablaX';"
+             alt="NablaX AI Logo" class="logo-header">
+        
+        <div class="w-full max-w-7xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-4">
+                NablaX <span class="gradient-text-soft">Platform Architecture</span>
+            </h1>
+            <p class="text-center text-slate-400 mb-12 max-w-3xl mx-auto">
+                A modular, AI-powered enterprise ecosystem designed for agility, collaboration, and intelligent automation.
+            </p>
 
-                    <!-- Top row: Office Automation / Project Management -->
-                    <div class="grid md:grid-cols-2 gap-4 mb-6">
-                        <!-- Office Automation -->
-                        <div class="border border-blue-200 rounded-xl p-4">
-                            <h3 class="font-semibold text-lg text-center mb-3">Office Automation</h3>
-                            <div class="grid grid-cols-3 gap-2 text-xs text-center">
-                                <div>
-                                    <div class="text-2xl">📅</div>
-                                    Calendar
-                                </div>
-                                <div>
-                                    <div class="text-2xl">✉️</div>
-                                    Email
-                                </div>
-                                <div>
-                                    <div class="text-2xl">📄</div>
-                                    Document<br>Collaboration
-                                </div>
-                            </div>
+            <div class="architecture-container">
+                <!-- Arrows -->
+                <div class="arrow vertical down" style="left: 50%; top: 20%; height: 4%;"></div>
+                <div class="arrow horizontal left" style="top: 55%; right: 29%; width: 8%;"></div>
+                <div class="arrow horizontal right" style="top: 55%; left: 63%; width: 8%;"></div>
+                <div class="arrow vertical down" style="left: 29%; top: 62%; height: 5%;"></div>
+
+
+                <!-- Layer 1: Users -->
+                <div class="layer" style="grid-row: 1; grid-column: 1 / -1;">
+                    <div class="layer-title">Users</div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="component-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>员工 (Staff)</span>
                         </div>
-
-                        <!-- Project Management -->
-                        <div class="border border-blue-200 rounded-xl p-4">
-                            <h3 class="font-semibold text-lg text-center mb-3">Project Management</h3>
-                            <div class="grid grid-cols-3 gap-2 text-xs text-center">
-                                <div>
-                                    <div class="text-2xl">🗂️</div>
-                                    Task<br>Assignment
-                                </div>
-                                <div>
-                                    <div class="text-2xl">📈</div>
-                                    Progress<br>Tracking
-                                </div>
-                                <div>
-                                    <div class="text-2xl">📝</div>
-                                    Performance<br>Review
-                                </div>
-                            </div>
+                        <div class="component-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>经理 (Manager)</span>
+                        </div>
+                        <div class="component-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>高管 (Executive)</span>
                         </div>
                     </div>
-
-                    <!-- Middle: BaaS core -->
-                    <div class="border-2 border-blue-300 rounded-xl p-6 mb-6">
-                        <h3 class="text-xl font-bold text-center mb-1">Business-as-a-Service</h3>
-                        <p class="text-center text-xs text-gray-600 mb-4">Composable • Agile</p>
-
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <!-- Core Services -->
-                            <div>
-                                <h4 class="font-semibold text-center mb-2">Core Services</h4>
-                                <div class="space-y-3 text-sm">
-                                    <div class="flex items-center gap-2"><span class="text-2xl">⚙️</span> Process Automation</div>
-                                    <div class="flex items-center gap-2"><span class="text-2xl">🤝</span> Collaboration Services</div>
-                                </div>
-                            </div>
-
-                            <!-- Extensibility -->
-                            <div>
-                                <h4 class="font-semibold text-center mb-2">Platform Extensibility</h4>
-                                <div class="flex flex-col items-center gap-3 text-sm">
-                                    <span class="border px-3 py-1 rounded-full border-blue-400">SDK</span>
-                                    <span class="border px-3 py-1 rounded-full border-blue-400">API</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom row -->
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <!-- Project Admin / Data Analytics -->
-                        <div class="border border-blue-200 rounded-xl p-4">
-                            <div class="grid grid-cols-2 gap-3 text-xs text-center">
-                                <div>
-                                    <div class="text-2xl">🖥️</div>
-                                    Project<br>Administration
-                                </div>
-                                <div>
-                                    <div class="text-2xl">📊</div>
-                                    Data<br>Analytics
-                                </div>
-                            </div>
-                            <div class="mt-3 text-center text-xs text-blue-600">API</div>
-                        </div>
-
-                        <!-- AI Agent -->
-                        <div class="border-2 border-blue-600 rounded-xl p-6 flex items-center justify-center">
-                            <h3 class="text-3xl font-bold text-blue-800">AI Agent</h3>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+                
+                <!-- Left Stack -->
+                <div class="left-stack">
+                    <!-- Layer: Enterprise Services -->
+                    <div class="layer">
+                        <div class="layer-title">Enterprise Services</div>
+                        <div class="grid grid-cols-3 lg:grid-cols-5 gap-3">
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.455.09-.934.09-1.425v-2.55M21 12a9.753 9.753 0 00-4.592-8.404A5.973 5.973 0 0114.25 6C14.502 6 14.747 6.017 14.992 6.05a9.753 9.753 0 00-4.592-8.404A5.973 5.973 0 019.75 2.25C9.502 2.25 9.257 2.267 9.008 2.3z" /></svg>即时通讯</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" /></svg>在线会议</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>文档共享</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>知识管理</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" /></svg>项目管理</div>
+                        </div>
+                    </div>
+                    <!-- Layer: Core AI Engine -->
+                    <div class="layer">
+                        <div class="layer-title">Core AI Engine</div>
+                        <div class="flex flex-col gap-4">
+                            <!-- Box for Agent Layer -->
+                            <div class="p-4 rounded-lg border border-slate-700 bg-slate-900/30">
+                                <h4 class="font-semibold text-center text-slate-300 mb-3">Agent Layer</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.438.995a6.427 6.427 0 010 .255c0 .382.146.755.438.995l1.003.827c.48.398.668 1.05.26 1.431l-1.296 2.247a1.125 1.125 0 01-1.37.49l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.063-.374-.313-.686-.645-.87a6.52 6.52 0 01-.22-.127c-.324-.196-.72-.257-1.075-.124l-1.217.456a1.125 1.125 0 01-1.37-.49l-1.296-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.437-.995a6.427 6.427 0 010-.255c0-.382-.146-.755-.437-.995l-1.004-.827a1.125 1.125 0 01-.26-1.431l1.296-2.247a1.125 1.125 0 011.37-.49l1.217.456c.355.133.75.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>AgentManager</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5-1.5a1.5 1.5 0 01-1.5-1.5V6.75a1.5 1.5 0 011.5-1.5h16.5a1.5 1.5 0 011.5 1.5v6.75a1.5 1.5 0 01-1.5 1.5H3.75z" /></svg>WorkflowManager</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-3.313-2.686-6-6-6S7.5 8.687 7.5 12c0 .313.023.62.068.924M21.75 12c0 3.313-2.686 6-6 6s-6-2.687-6-6c0-.313.023-.62.068-.924" /></svg>Human-in-the-loop</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V15m0 0l2.25 1.313M12 15l-2.25 1.313M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Environment</div>
+                                </div>
+                            </div>
+                            <!-- Box for Basic Layer -->
+                            <div class="p-4 rounded-lg border border-slate-700 bg-slate-900/30">
+                                <h4 class="font-semibold text-center text-slate-300 mb-3">Basic Layer</h4>
+                                <div class="grid grid-cols-3 md:grid-cols-5 gap-3">
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 006.38-2.625 3.75 3.75 0 00-2.625-6.38 3.75 3.75 0 00-6.38 2.625 3.75 3.75 0 002.625 6.38z" /></svg>LLMs</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>Memory</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.471-2.471a1.125 1.125 0 011.591 0L21 15.17M3 4.5l5.877 5.877m0 0L11.42 15.17M8.877 10.377L3 16.25V21h4.75l5.877-5.877M8.877 10.377l2.471 2.471" /></svg>Tools (MCP)</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.5-10.5h-7a.5.5 0 00-.5.5v14a.5.5 0 00.5.5h7a.5.5 0 00.5-.5v-14a.5.5 0 00-.5-.5z" /></svg>Planning</div>
+                                    <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>Prompts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Middle Pillar -->
+                <div class="middle-pillar">
+                    <div class="layer w-full h-full flex flex-col justify-center">
+                        <div class="layer-title">Open Platform</div>
+                        <div class="flex flex-col gap-4">
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>API</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>SDK</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" /></svg>集成</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Pillar -->
+                <div class="right-pillar">
+                    <div class="layer w-full h-full flex flex-col justify-center">
+                        <div class="layer-title">Enterprise Ecosystem</div>
+                         <div class="flex flex-col gap-4">
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" /></svg>现有数据</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>现有应用</div>
+                            <div class="component-card"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.923a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008z" /></svg>企业生态</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+        
         <!-- Slide 10: Seed Funding -->
         <section id="slide-10" class="slide">
             <div class="slide-number">10</div>
@@ -1130,7 +1327,7 @@
                 <div class="dark-card p-8 rounded-xl border-2 border-purple-500/30">
                     <h3 class="font-bold text-2xl mb-6 text-purple-400">Execution Timeline</h3>
                     <div class="grid md:grid-cols-3 gap-6 text-left">
-                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-400">
+                        <div class="timeline-card p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-400" style="color: #60a5fa;">
                             <h4 class="font-semibold text-lg text-blue-400 mb-2">Months 1-3: Build</h4>
                             <ul class="text-slate-300 text-sm space-y-1">
                                 <li>• MVP development</li>
@@ -1138,7 +1335,7 @@
                                 <li>• Initial partnerships</li>
                             </ul>
                         </div>
-                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-green-400">
+                        <div class="timeline-card p-4 bg-slate-700/50 rounded-lg border-l-4 border-green-400" style="color: #34d399;">
                             <h4 class="font-semibold text-lg text-green-400 mb-2">Months 4-6: Validate</h4>
                             <ul class="text-slate-300 text-sm space-y-1">
                                 <li>• Pilot customer onboarding</li>
@@ -1146,7 +1343,7 @@
                                 <li>• Market feedback integration</li>
                             </ul>
                         </div>
-                        <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-purple-400">
+                        <div class="timeline-card p-4 bg-slate-700/50 rounded-lg border-l-4 border-purple-400" style="color: #a78bfa;">
                             <h4 class="font-semibold text-lg text-purple-400 mb-2">Months 7-12: Scale</h4>
                             <ul class="text-slate-300 text-sm space-y-1">
                                 <li>• Revenue growth</li>
@@ -1159,7 +1356,13 @@
 
                 <!-- Next Round Preparation -->
                 <div class="mt-8 bg-gradient-to-r from-green-500/60 to-blue-500/60 backdrop-blur-sm text-white p-6 rounded-xl border border-green-400/30">
-                    <h4 class="text-xl font-bold mb-2">🎯 Series A Ready</h4>
+                    <h4 class="text-xl font-bold mb-2 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Series A Ready
+                    </h4>
                     <p class="text-lg">With proven traction and validated business model, positioned for $2-5M Series A by Month 12</p>
                 </div>
 
@@ -1178,8 +1381,11 @@
                 <!-- Main CTA -->
                 <div class="max-w-4xl mx-auto mb-16">
                     <h2 class="text-4xl md:text-6xl font-bold mb-6">
-                        Choose NablaX, Make AI the<br><span class="gradient-text">Core Engine</span> of Your Growth
+                        Choose NablaX
                     </h2>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6">
+                        Make AI the <span class="gradient-text-soft">Core Engine</span> of Your Growth
+                    </h3>
                     <p class="text-xl md:text-2xl text-blue-200 mb-12">
                         Contact us now for a free enterprise AI assessment and customized solution
                     </p>
@@ -1216,8 +1422,9 @@
                         <div class="text-center">
                             <h4 class="font-semibold mb-6 text-blue-200 text-xl">Contact Us</h4>
                             <div class="space-y-4">
-                                <div>
-                                    <p class="text-blue-300">📧 hello@nablax.ai</p>
+                                <div class="flex items-center justify-center">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-blue-300"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+                                  <p class="text-blue-300">contact@nablax-ai.com</p>
                                 </div>
                                 <div class="mt-6">
                                     <h3 class="text-xl font-bold gradient-text mb-2">NablaX</h3>
@@ -1373,13 +1580,13 @@
             tiers.forEach(tier => {
                 tier.addEventListener('click', () => {
                     tiers.forEach(t => {
-                        t.classList.remove('scale-105', 'border-blue-600', 'bg-blue-50', 'shadow-2xl', 'relative');
-                        t.classList.add('border-gray-200', 'bg-white', 'shadow-lg', 'hover:scale-105');
+                        t.classList.remove('scale-105', 'border-blue-500', 'bg-blue-900/20', 'shadow-2xl');
+                        t.classList.add('border-slate-600');
                         const popularBadge = t.querySelector('span.absolute');
                         if(popularBadge) popularBadge.style.display = 'none';
                     });
-                    tier.classList.add('scale-105', 'border-blue-600', 'bg-blue-50', 'shadow-2xl', 'relative');
-                    tier.classList.remove('hover:scale-105');
+                    tier.classList.add('scale-105', 'border-blue-500', 'bg-blue-900/20', 'shadow-2xl');
+                    tier.classList.remove('border-slate-600');
                      const popularBadge = tier.querySelector('span.absolute');
                     if(popularBadge) popularBadge.style.display = 'inline-block';
                 });
